@@ -10,10 +10,14 @@ namespace Project2_LP2_2020
     {
         private bool running;
         private BlockingCollection<ConsoleKey> input;
+        private Thread gameThread;
+        private Thread inputThread;
 
         public Engine()
         {
             input = new BlockingCollection<ConsoleKey>();
+            inputThread = new Thread(ReadKeys);
+            gameThread = new Thread(GameLoop);
         }
         private void GameLoop()
         {
@@ -22,6 +26,7 @@ namespace Project2_LP2_2020
             int lag = 0;
             Console.Clear();
             running = true;
+            inputThread.Start();
 
             while(running)
             {
@@ -36,7 +41,7 @@ namespace Project2_LP2_2020
                 while( lag >= msPerFrame)
                 {
                     // Update the game time until it's the same as real time
-                    Update()
+                    Update();
                     lag -= msPerFrame;
                 }
                 Render();
@@ -45,7 +50,26 @@ namespace Project2_LP2_2020
 
         private void ProcessInput()
         {
-
+            ConsoleKey key;
+            if(input.TryTake(out key))
+            {
+                switch (key)
+                {
+                    case ConsoleKey.Q:
+                        // do something
+                        break;
+                    case ConsoleKey.A:
+                        // do something
+                        break;
+                    case ConsoleKey.Z:
+                        // do something
+                        break;
+                    // Add more keys
+                    default:
+                        Console.WriteLine("Invalid Option!");
+                        break;
+                }
+            }
         }
 
         private void ReadKeys()
@@ -55,10 +79,8 @@ namespace Project2_LP2_2020
             do
             {
                 ck = Console.ReadKey(true).Key; // (true) so it doesn't print on the screen
-                input.Add();
+                input.Add(ck);
             } while(ck != ConsoleKey.Escape);
-
-
         }
     }
 }
