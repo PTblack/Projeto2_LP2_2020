@@ -8,7 +8,7 @@ namespace Project2_LP2_2020
     /// Describes current game state:
     /// Menus, Ongoing, Draw, [victory for] Yellow, [victory for] Red.
     /// </summary>
-    public enum  Winner
+    public enum GameStage
     {
         Menus,
         Ongoing,
