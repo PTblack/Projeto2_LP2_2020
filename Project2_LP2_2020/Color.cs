@@ -9,6 +9,7 @@ namespace Project2_LP2_2020
     /// </summary>
     public enum Color
     {
+        None,
         Yellow,
         Red,
     }
