@@ -68,6 +68,28 @@ _Saves board dimensions and status of board spaces (Empty, Cross, Circle)_
 - Classe **BoardFiller** verifica e - se possível - acrescenta a peça proposta ao tabuleiro.
 - Classe **BoardManager** é a classe contactada pelo MainLoop no **Program** e é ela que por sua vez chama as classes **BoardSearcher** e **BoardFiller**.
 
+### TEXTO EXTRA
+
+board é um array bidimensional de chars
+
+program chama boardmanager e passa-lhe a coluna escolhida pelo jogador, 
+boardmanager por sua vez manda a coordenada para a boardfiller.
+
+boardfiller recebe a coluna em que a peça será posta e avalia se é possível, 
+pondo-a no topo dessa coluna ou avisando que a jogada é invalida. Caso a
+jogada seja valida, devolve a row em que a peça ficou, pondo-a no board em 
+si (alterando o char para a peça do jogador).
+
+no program, tendo agora a coluna e a row da peça, manda-se essas coordenadas
+para a boardmanager, que as dá à boardsearcher.
+
+A boardsearcher, com as coordenadas da peça posta, irá procurar sequencias
+com peças do mesmo tipo, retornando booleans à gamemanager, que por sua vez 
+irá retornar um bool à program a indicar se houve uma vitoria.
+
+caso o program seja informado de uma vitoria, este chama o UI para anunciar 
+o vencedor, passando como argumento o jogador atual.
+
 ---
 
 ## Divisão de Tarefas *(mais ou menos)*
