@@ -6,7 +6,9 @@ namespace Project2_LP2_2020
     {
         static void Main(string[] args)
         {
-            //---------------------------
+            Board board = new Board();
+            Console.WriteLine(board);
+            /*//---------------------------
             // Give default values for variables here (outside gameloop)
             GameStage gameStage = GameStage.Menus;
             string optionChoice = "";
@@ -65,7 +67,8 @@ namespace Project2_LP2_2020
                     // É este o comando?
                     // Environment.Exit(-1);
                 }
-            }
+            }*/
+
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Project2_LP2_2020
 
 
         // Para diagonal (45º) (TANGENTE POSITIVA)
-        private bool SearchWinSeqTanPlus(Piece placedPiece)
+        public bool SearchWinSeqTanPlus(Piece placedPiece)
         {
             // Piece to be transformed in search of sequences with the placedPiece
             Piece checkPiece = new Piece();
@@ -88,7 +88,7 @@ namespace Project2_LP2_2020
 
 
         // Para diagonal (135º) (TANGENTE NEGATIVA)
-        private bool SearchWinSeqTanNeg(Piece placedPiece)
+        public bool SearchWinSeqTanNeg(Piece placedPiece)
         {
             // Piece to be transformed in search of sequences with the placedPiece
             Piece checkPiece = new Piece();
@@ -115,7 +115,7 @@ namespace Project2_LP2_2020
                     if (checkPiece.PositionX > board.length || 
                         checkPiece.PositionY > board.height ||
                         board.GetSpaceStatus(
-                            checkPiece.PositionX, checkPiece.PositionY) != 
+                            checkPiece.PositionX, checkPiece. ) != 
                             placedPiece.PieceType)
                     {
                         noValidSpacePos = true;
@@ -159,7 +159,7 @@ namespace Project2_LP2_2020
 
 
         // Para horizontal
-        private bool SearchWinSeqHoriz(Piece placedPiece)
+        public bool SearchWinSeqHoriz(Piece placedPiece)
         {
             // Piece to be transformed in search of sequences with the placedPiece
             Piece checkPiece = new Piece();
@@ -226,7 +226,7 @@ namespace Project2_LP2_2020
 
 
         // Para vertical
-        private bool SearchWinSeqVert(Piece placedPiece)
+        public bool SearchWinSeqVert(Piece placedPiece)
         {
             // Piece to be transformed in search of sequences with the placedPiece
             Piece checkPiece = new Piece();
