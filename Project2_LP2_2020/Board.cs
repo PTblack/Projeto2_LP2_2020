@@ -43,6 +43,11 @@ namespace Project2_LP2_2020
             }
         }
 
+        /// <summary>
+        /// Builds a string illustrating boardArray as a 2D matrix with 
+        /// coloured elements
+        /// </summary>
+        /// <returns>A string with the current boardArray</returns>
         public override string ToString()
         {
             string boardString = "";
