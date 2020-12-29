@@ -41,10 +41,10 @@ namespace Project2_LP2_2020
                 while( lag >= msPerFrame)
                 {
                     // Update the game time until it's the same as real time
-                    Update();
+                    //Update();
                     lag -= msPerFrame;
                 }
-                Render();
+                //Renderer();
             }
         }
 
@@ -72,6 +72,10 @@ namespace Project2_LP2_2020
             }
         }
 
+        private void Finish()
+        {
+            inputThread.Join();
+        }
         private void ReadKeys()
         {
             ConsoleKey ck;
