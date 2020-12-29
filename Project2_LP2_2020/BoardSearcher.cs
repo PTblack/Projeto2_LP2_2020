@@ -13,11 +13,16 @@ namespace Project2_LP2_2020
         
         int distance;
         bool noValidSpacePos, noValidSpaceNeg;
-        Board board = new Board();
+        Board board;
+
+        public BoardSearcher(Board board)
+        {
+            this.board = board;
+        }
 
 
         // Para diagonal (45º) (TANGENTE POSITIVA)
-        public bool SearchWinSeqTanPlus(Piece placedPiece)
+        public bool SearchWinSeqTanPlus(int[] pieceCoordinates)
         {
             // Piece to be transformed in search of sequences with the placedPiece
             Piece checkPiece = new Piece();
@@ -88,7 +93,7 @@ namespace Project2_LP2_2020
 
 
         // Para diagonal (135º) (TANGENTE NEGATIVA)
-        public bool SearchWinSeqTanNeg(Piece placedPiece)
+        public bool SearchWinSeqTanNeg(int[] pieceCoordinates)
         {
             // Piece to be transformed in search of sequences with the placedPiece
             Piece checkPiece = new Piece();
@@ -159,7 +164,7 @@ namespace Project2_LP2_2020
 
 
         // Para horizontal
-        public bool SearchWinSeqHoriz(Piece placedPiece)
+        public bool SearchWinSeqHoriz(int[] pieceCoordinates)
         {
             // Piece to be transformed in search of sequences with the placedPiece
             Piece checkPiece = new Piece();
@@ -226,7 +231,7 @@ namespace Project2_LP2_2020
 
 
         // Para vertical
-        public bool SearchWinSeqVert(Piece placedPiece)
+        public bool SearchWinSeqVert(int[] pieceCoordinates)
         {
             // Piece to be transformed in search of sequences with the placedPiece
             Piece checkPiece = new Piece();
