@@ -40,7 +40,7 @@ namespace Project2_LP2_2020
         /// Applies the 'SearchWinSeq' methods to search for a victory sequence
         /// with the most recent piece's location
         /// </summary>
-        /// <param name="newPieceLoc">The location of the most recent 
+        /// <param name="pieceCoordinates">The location of the most recent 
         /// piece</param>
         /// <returns>Boolean indicating if there is a victory sequence</returns>
         private bool CheckWin (int[] pieceCoordinates)
