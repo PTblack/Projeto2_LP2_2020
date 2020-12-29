@@ -2,17 +2,16 @@ namespace Project2_LP2_2020
 {
     public class BoardSearcher
     {
-        // In BoardSearcher
-        /*
-        Piece         - Struct saving a piece's position and Type (Cross or Circle)
-        checkPiece    - Peça a ser usada para verificar posições no tabuleiro
-        placedPiece   - Peça posta pelo jogador
-        distance      - distancia da placedPiece para ser avaliada
-        sequenceCount - Variable verifying if a sequence of four is found 
-        */
-        
+        // Distance of the value being evaluated to the placed piece
         int distance;
+        
+        // Booleans to verify if there are no more valid spaces in an area
         bool noValidSpacePos, noValidSpaceNeg;
+        
+        // Array containing the 2D coordinates of the space being evaluated for 
+        // a sequence
+        int[] checkCoordinates = new int[2];
+
         Board board;
 
         public BoardSearcher(Board board)
@@ -20,12 +19,11 @@ namespace Project2_LP2_2020
             this.board = board;
         }
 
-
-        // Para diagonal (45º) (TANGENTE POSITIVA)
-        public bool SearchWinSeqTanPlus(int[] pieceCoordinates)
+        // Search sequence in the positive tangent diagonal 
+        // (1st and 3rd Quadrants)
+        public bool SearchWinSeqTanPlus(int[] placedCoordinates)
         {
-            // Piece to be transformed in search of sequences with the placedPiece
-            Piece checkPiece = new Piece();
+            checkCoordinates = placedCoordinates;
 
             // Variables to check if there are more places to check for sequence
             noValidSpacePos = false;
@@ -34,23 +32,27 @@ namespace Project2_LP2_2020
             // Variable to register size of current sequence
             int sequenceCount = 0;
 
-            // Check spaces at a distance fit for a sequence with the placedPiece
-            for (distance = 1; distance < 3; distance++)
+            // Check spaces at a distance fit for a sequence with 
+            // the placedPiece
+            for (distance = 1; distance < 4; distance++)
             {
-                // Reset checkPiece Position for operation with distance (1st Quadrant)
-                checkPiece = placedPiece;
+                // Reset checkCoordinates for operation with distance 
+                checkCoordinates = placedCoordinates;
                 
                 if (noValidSpacePos == false)
                 {
-                    checkPiece.AddToPositionX(distance);
-                    checkPiece.AddToPositionY(distance);
-                    // Is the proposed position outside the board or of a type 
+                    // Search in the 1st Quadrant
+                    checkCoordinates[0] = checkCoordinates[0] + distance;
+                    checkCoordinates[1] = checkCoordinates[1] + distance;
+
+                    // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
-                    if (checkPiece.PositionX > board.length || 
-                        checkPiece.PositionY > board.height ||
-                        board.GetSpaceStatus(
-                            checkPiece.PositionX, checkPiece.PositionY) != 
-                            placedPiece.PieceType)
+                    if (checkCoordinates[0] >= board.totColumns || 
+                        checkCoordinates[1] >= board.totRows ||
+                        board.boardArray[checkCoordinates[0], 
+                                         checkCoordinates[1]] != 
+                        board.boardArray[placedCoordinates[0], 
+                                         placedCoordinates[1]])
                     {
                         noValidSpacePos = true;
                     }
@@ -61,22 +63,25 @@ namespace Project2_LP2_2020
                     }
                 }
 
-                // Reset checkPiece Position for operation with distance (3rd Quadrant)
-                checkPiece = placedPiece;
-
+                // Reset checkCoordinates for operation with distance 
+                checkCoordinates = placedCoordinates;
+                
                 if (noValidSpaceNeg == false)
                 {
-                    checkPiece.AddToPositionX(-distance);
-                    checkPiece.AddToPositionY(-distance);
-                    // Is the proposed position outside the board or of a type 
+                    // Search in the 3rd Quadrant
+                    checkCoordinates[0] = checkCoordinates[0] - distance;
+                    checkCoordinates[1] = checkCoordinates[1] - distance;
+
+                    // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
-                    if (checkPiece.PositionX < board.length || 
-                        checkPiece.PositionY < board.height ||
-                        board.GetSpaceStatus(
-                            checkPiece.PositionX, checkPiece.PositionY) != 
-                            placedPiece.PieceType)
+                    if (checkCoordinates[0] < 0 || 
+                        checkCoordinates[1] < 0 ||
+                        board.boardArray[checkCoordinates[0], 
+                                         checkCoordinates[1]] != 
+                        board.boardArray[placedCoordinates[0], 
+                                         placedCoordinates[1]])
                     {
-                        noValidSpacePos = true;
+                        noValidSpaceNeg = true;
                     }
                     // If the position is valid and of the wanted type
                     else
@@ -91,12 +96,11 @@ namespace Project2_LP2_2020
             else return false;
         }
 
-
-        // Para diagonal (135º) (TANGENTE NEGATIVA)
-        public bool SearchWinSeqTanNeg(int[] pieceCoordinates)
+        // Search sequence in the negative tangent diagonal 
+        // (2nd and 4th Quadrants)
+        public bool SearchWinSeqTanNeg(int[] placedCoordinates)
         {
-            // Piece to be transformed in search of sequences with the placedPiece
-            Piece checkPiece = new Piece();
+            checkCoordinates = placedCoordinates;
 
             // Variables to check if there are more places to check for sequence
             noValidSpacePos = false;
@@ -105,23 +109,27 @@ namespace Project2_LP2_2020
             // Variable to register size of current sequence
             int sequenceCount = 0;
 
-            // Check spaces at a distance fit for a sequence with the placedPiece
-            for (distance = 1; distance < 3; distance++)
+            // Check spaces at a distance fit for a sequence with 
+            // the placedPiece
+            for (distance = 1; distance < 4; distance++)
             {
-                // Reset checkPiece Position for operation with distance (2nd Quadrant)
-                checkPiece = placedPiece;
+                // Reset checkCoordinates for operation with distance 
+                checkCoordinates = placedCoordinates;
                 
                 if (noValidSpacePos == false)
                 {
-                    checkPiece.AddToPositionX(-distance);
-                    checkPiece.AddToPositionY(distance);
-                    // Is the proposed position outside the board or of a type 
+                    // Search in the 2nd Quadrant
+                    checkCoordinates[0] = checkCoordinates[0] - distance;
+                    checkCoordinates[1] = checkCoordinates[1] + distance;
+
+                    // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
-                    if (checkPiece.PositionX > board.length || 
-                        checkPiece.PositionY > board.height ||
-                        board.GetSpaceStatus(
-                            checkPiece.PositionX, checkPiece. ) != 
-                            placedPiece.PieceType)
+                    if (checkCoordinates[0] < 0 || 
+                        checkCoordinates[1] >= board.totRows ||
+                        board.boardArray[checkCoordinates[0], 
+                                         checkCoordinates[1]] != 
+                        board.boardArray[placedCoordinates[0], 
+                                         placedCoordinates[1]])
                     {
                         noValidSpacePos = true;
                     }
@@ -132,22 +140,25 @@ namespace Project2_LP2_2020
                     }
                 }
 
-                // Reset checkPiece Position for operation with distance (4th Quadrant)
-                checkPiece = placedPiece;
-
+                // Reset checkCoordinates for operation with distance 
+                checkCoordinates = placedCoordinates;
+                
                 if (noValidSpaceNeg == false)
                 {
-                    checkPiece.AddToPositionX(distance);
-                    checkPiece.AddToPositionY(-distance);
-                    // Is the proposed position outside the board or of a type 
+                    // Search in the 4th Quadrant
+                    checkCoordinates[0] = checkCoordinates[0] + distance;
+                    checkCoordinates[1] = checkCoordinates[1] - distance;
+
+                    // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
-                    if (checkPiece.PositionX > board.length || 
-                        checkPiece.PositionY < 1 ||
-                        board.GetSpaceStatus(
-                            checkPiece.PositionX, checkPiece.PositionY) != 
-                            placedPiece.PieceType)
+                    if (checkCoordinates[0] >= board.totColumns || 
+                        checkCoordinates[1] < 0 ||
+                        board.boardArray[checkCoordinates[0], 
+                                         checkCoordinates[1]] != 
+                        board.boardArray[placedCoordinates[0], 
+                                         placedCoordinates[1]])
                     {
-                        noValidSpacePos = true;
+                        noValidSpaceNeg = true;
                     }
                     // If the position is valid and of the wanted type
                     else
@@ -162,12 +173,10 @@ namespace Project2_LP2_2020
             else return false;
         }
 
-
-        // Para horizontal
-        public bool SearchWinSeqHoriz(int[] pieceCoordinates)
+        // Search sequence in the horizontal axis
+        public bool SearchWinSeqHoriz(int[] placedCoordinates)
         {
-            // Piece to be transformed in search of sequences with the placedPiece
-            Piece checkPiece = new Piece();
+            checkCoordinates = placedCoordinates;
 
             // Variables to check if there are more places to check for sequence
             noValidSpacePos = false;
@@ -176,21 +185,25 @@ namespace Project2_LP2_2020
             // Variable to register size of current sequence
             int sequenceCount = 0;
 
-            // Check spaces at a distance fit for a sequence with the placedPiece
-            for (distance = 1; distance < 3; distance++)
+            // Check spaces at a distance fit for a sequence with 
+            // the placedPiece
+            for (distance = 1; distance < 4; distance++)
             {
-                // Reset checkPiece Position for operation with distance (Positive X)
-                checkPiece = placedPiece;
+                // Reset checkCoordinates for operation with distance 
+                checkCoordinates = placedCoordinates;
                 
                 if (noValidSpacePos == false)
                 {
-                    checkPiece.AddToPositionX(distance);
-                    // Is the proposed position outside the board or of a type 
+                    // Search in the 'positive X' field
+                    checkCoordinates[0] = checkCoordinates[0] + distance;
+
+                    // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
-                    if (checkPiece.PositionX > board.length || 
-                        board.GetSpaceStatus(
-                            checkPiece.PositionX, checkPiece.PositionY) != 
-                            placedPiece.PieceType)
+                    if (checkCoordinates[0] >= board.totColumns ||
+                        board.boardArray[checkCoordinates[0], 
+                                         checkCoordinates[1]] != 
+                        board.boardArray[placedCoordinates[0], 
+                                         placedCoordinates[1]])
                     {
                         noValidSpacePos = true;
                     }
@@ -201,20 +214,23 @@ namespace Project2_LP2_2020
                     }
                 }
 
-                // Reset checkPiece Position for operation with distance (Negative X)
-                checkPiece = placedPiece;
-
+                // Reset checkCoordinates for operation with distance 
+                checkCoordinates = placedCoordinates;
+                
                 if (noValidSpaceNeg == false)
                 {
-                    checkPiece.AddToPositionX(-distance);
-                    // Is the proposed position outside the board (left of) or of a type 
+                    // Search in the 'negative X' field
+                    checkCoordinates[0] = checkCoordinates[0] - distance;
+
+                    // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
-                    if (checkPiece.PositionX < 1 || 
-                        board.GetSpaceStatus(
-                            checkPiece.PositionX, checkPiece.PositionY) != 
-                            placedPiece.PieceType)
+                    if (checkCoordinates[0] < 0 ||
+                        board.boardArray[checkCoordinates[0], 
+                                         checkCoordinates[1]] != 
+                        board.boardArray[placedCoordinates[0], 
+                                         placedCoordinates[1]])
                     {
-                        noValidSpacePos = true;
+                        noValidSpaceNeg = true;
                     }
                     // If the position is valid and of the wanted type
                     else
@@ -229,12 +245,10 @@ namespace Project2_LP2_2020
             else return false;
         }
 
-
-        // Para vertical
-        public bool SearchWinSeqVert(int[] pieceCoordinates)
+        // Search sequence in the vertical axis
+        public bool SearchWinSeqVert(int[] placedCoordinates)
         {
-            // Piece to be transformed in search of sequences with the placedPiece
-            Piece checkPiece = new Piece();
+            checkCoordinates = placedCoordinates;
 
             // Variables to check if there are more places to check for sequence
             noValidSpacePos = false;
@@ -243,21 +257,25 @@ namespace Project2_LP2_2020
             // Variable to register size of current sequence
             int sequenceCount = 0;
 
-            // Check spaces at a distance fit for a sequence with the placedPiece
-            for (distance = 1; distance < 3; distance++)
+            // Check spaces at a distance fit for a sequence with 
+            // the placedPiece
+            for (distance = 1; distance < 4; distance++)
             {
-                // Reset checkPiece Position for operation with distance (Positive Y)
-                checkPiece = placedPiece;
+                // Reset checkCoordinates for operation with distance 
+                checkCoordinates = placedCoordinates;
                 
                 if (noValidSpacePos == false)
                 {
-                    checkPiece.AddToPositionY(distance);
-                    // Is the proposed position outside the board or of a type 
+                    // Search in the 'positive Y' field
+                    checkCoordinates[1] = checkCoordinates[1] + distance;
+
+                    // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
-                    if (checkPiece.PositionY > board.height ||
-                        board.GetSpaceStatus(
-                            checkPiece.PositionX, checkPiece.PositionY) != 
-                            placedPiece.PieceType)
+                    if (checkCoordinates[1] >= board.totRows ||
+                        board.boardArray[checkCoordinates[0], 
+                                         checkCoordinates[1]] != 
+                        board.boardArray[placedCoordinates[0], 
+                                         placedCoordinates[1]])
                     {
                         noValidSpacePos = true;
                     }
@@ -268,20 +286,23 @@ namespace Project2_LP2_2020
                     }
                 }
 
-                // Reset checkPiece Position for operation with distance (Negative X)
-                checkPiece = placedPiece;
-
+                // Reset checkCoordinates for operation with distance 
+                checkCoordinates = placedCoordinates;
+                
                 if (noValidSpaceNeg == false)
                 {
-                    checkPiece.AddToPositionY(-distance);
-                    // Is the proposed position outside the board (below) or of a type 
+                    // Search in the 'negative Y' field
+                    checkCoordinates[0] = checkCoordinates[1] - distance;
+
+                    // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
-                    if (checkPiece.PositionY < 1 ||
-                        board.GetSpaceStatus(
-                            checkPiece.PositionX, checkPiece.PositionY) != 
-                            placedPiece.PieceType)
+                    if (checkCoordinates[1] < 0 ||
+                        board.boardArray[checkCoordinates[0], 
+                                         checkCoordinates[1]] != 
+                        board.boardArray[placedCoordinates[0], 
+                                         placedCoordinates[1]])
                     {
-                        noValidSpacePos = true;
+                        noValidSpaceNeg = true;
                     }
                     // If the position is valid and of the wanted type
                     else
@@ -295,7 +316,5 @@ namespace Project2_LP2_2020
             if (sequenceCount >= 4) return true;
             else return false;
         }
-    
-
     }
 }
