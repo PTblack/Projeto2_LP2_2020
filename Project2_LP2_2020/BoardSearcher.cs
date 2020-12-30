@@ -33,8 +33,8 @@ namespace Project2_LP2_2020
         // Important info for all methods that work with the boardArray:
         //
         // The boardArray's [0, 0] position is equivalent to the game board's
-        // top-left corner, with the [totColumns, totRows] position being the
-        // bottom-right corner.
+        // top-left corner, with the [totColumns - 1, totRows - 1] position 
+        // being the bottom-right corner.
         //______________________________________________________________________
 
         // Search sequence in the positive tangent diagonal 
