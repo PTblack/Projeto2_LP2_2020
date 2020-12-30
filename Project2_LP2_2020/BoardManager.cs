@@ -22,8 +22,8 @@ namespace Project2_LP2_2020
         }
 
         /// <summary>
-        /// If the chosen column is valid, place piece in its lowest free space,
-        /// else, send error message.
+        /// If the chosen column is valid, place piece in its lowest free space.
+        /// Else, send an error message.
         /// </summary>
         /// <param name="givenColumn">Column number given by the player</param>
         /// <param name="playerColor">Identifies the current player</param>
@@ -45,9 +45,11 @@ namespace Project2_LP2_2020
         /// <returns>Boolean indicating if there is a victory sequence</returns>
         private bool CheckWin (int[] pieceCoordinates)
         {
-            if (boardSearcher.SearchWinSeqTanPlus(pieceCoordinates)||
-                boardSearcher.SearchWinSeqTanNeg(pieceCoordinates)||
-                boardSearcher.SearchWinSeqHoriz(pieceCoordinates)||
+            // If any of the 'SearchWinSeq' methods find a winning sequence
+            // (returning a 'true' boolean), the method returns 'true' as well.
+            if (boardSearcher.SearchWinSeqTanPlus(pieceCoordinates) ||
+                boardSearcher.SearchWinSeqTanNeg(pieceCoordinates) ||
+                boardSearcher.SearchWinSeqHoriz(pieceCoordinates) ||
                 boardSearcher.SearchWinSeqVert(pieceCoordinates))
                 return true;
             else return false;

@@ -19,6 +19,24 @@ namespace Project2_LP2_2020
             this.board = board;
         }
 
+        //______________________________________________________________________
+        //
+        //       1   2   3   4   5   6   7
+        //    -----------------------------
+        //  1 |  O   O   O   O   O   O   O
+        //  2 |  O   O   O   O   O   O   O
+        //  3 |  O   O   O   O   O   O   O
+        //  4 |  O   O   O   O   O   O   O
+        //  5 |  O   O   O   O   O   O   O
+        //  6 |  O   O   O   O   O   O   O
+        //
+        // Important info for all methods that work with the boardArray:
+        //
+        // The boardArray's [0, 0] position is equivalent to the game board's
+        // top-left corner, with the [totColumns - 1, totRows - 1] position 
+        // being the bottom-right corner.
+        //______________________________________________________________________
+
         // Search sequence in the positive tangent diagonal 
         // (1st and 3rd Quadrants)
         public bool SearchWinSeqTanPlus(int[] placedCoordinates)
@@ -43,12 +61,12 @@ namespace Project2_LP2_2020
                 {
                     // Search in the 1st Quadrant
                     checkCoordinates[0] = checkCoordinates[0] + distance;
-                    checkCoordinates[1] = checkCoordinates[1] + distance;
+                    checkCoordinates[1] = checkCoordinates[1] - distance;
 
                     // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
                     if (checkCoordinates[0] >= board.totColumns || 
-                        checkCoordinates[1] >= board.totRows ||
+                        checkCoordinates[1] < 0 ||
                         board.boardArray[checkCoordinates[0], 
                                          checkCoordinates[1]] != 
                         board.boardArray[placedCoordinates[0], 
@@ -70,12 +88,12 @@ namespace Project2_LP2_2020
                 {
                     // Search in the 3rd Quadrant
                     checkCoordinates[0] = checkCoordinates[0] - distance;
-                    checkCoordinates[1] = checkCoordinates[1] - distance;
+                    checkCoordinates[1] = checkCoordinates[1] + distance;
 
                     // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
                     if (checkCoordinates[0] < 0 || 
-                        checkCoordinates[1] < 0 ||
+                        checkCoordinates[1] >= board.totRows ||
                         board.boardArray[checkCoordinates[0], 
                                          checkCoordinates[1]] != 
                         board.boardArray[placedCoordinates[0], 
@@ -120,12 +138,12 @@ namespace Project2_LP2_2020
                 {
                     // Search in the 2nd Quadrant
                     checkCoordinates[0] = checkCoordinates[0] - distance;
-                    checkCoordinates[1] = checkCoordinates[1] + distance;
+                    checkCoordinates[1] = checkCoordinates[1] - distance;
 
                     // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
                     if (checkCoordinates[0] < 0 || 
-                        checkCoordinates[1] >= board.totRows ||
+                        checkCoordinates[1] < 0 ||
                         board.boardArray[checkCoordinates[0], 
                                          checkCoordinates[1]] != 
                         board.boardArray[placedCoordinates[0], 
@@ -147,12 +165,12 @@ namespace Project2_LP2_2020
                 {
                     // Search in the 4th Quadrant
                     checkCoordinates[0] = checkCoordinates[0] + distance;
-                    checkCoordinates[1] = checkCoordinates[1] - distance;
+                    checkCoordinates[1] = checkCoordinates[1] + distance;
 
                     // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
                     if (checkCoordinates[0] >= board.totColumns || 
-                        checkCoordinates[1] < 0 ||
+                        checkCoordinates[1] >= board.totRows ||
                         board.boardArray[checkCoordinates[0], 
                                          checkCoordinates[1]] != 
                         board.boardArray[placedCoordinates[0], 
@@ -267,11 +285,11 @@ namespace Project2_LP2_2020
                 if (noValidSpacePos == false)
                 {
                     // Search in the 'positive Y' field
-                    checkCoordinates[1] = checkCoordinates[1] + distance;
+                    checkCoordinates[1] = checkCoordinates[1] - distance;
 
                     // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
-                    if (checkCoordinates[1] >= board.totRows ||
+                    if (checkCoordinates[1] < 0 ||
                         board.boardArray[checkCoordinates[0], 
                                          checkCoordinates[1]] != 
                         board.boardArray[placedCoordinates[0], 
@@ -292,11 +310,11 @@ namespace Project2_LP2_2020
                 if (noValidSpaceNeg == false)
                 {
                     // Search in the 'negative Y' field
-                    checkCoordinates[0] = checkCoordinates[1] - distance;
+                    checkCoordinates[0] = checkCoordinates[1] + distance;
 
                     // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
-                    if (checkCoordinates[1] < 0 ||
+                    if (checkCoordinates[1] >= board.totRows ||
                         board.boardArray[checkCoordinates[0], 
                                          checkCoordinates[1]] != 
                         board.boardArray[placedCoordinates[0], 

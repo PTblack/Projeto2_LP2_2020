@@ -5,7 +5,8 @@ using System.Text;
 namespace Project2_LP2_2020
 {
     /// <summary>
-    /// The two possible piece colors, each represents one of the competitors 
+    /// The three possible colors for a board space, indicating if it is empty 
+    /// or if it is occupied by one of the players 
     /// </summary>
     public enum Color
     {
