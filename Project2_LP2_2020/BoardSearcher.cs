@@ -19,6 +19,24 @@ namespace Project2_LP2_2020
             this.board = board;
         }
 
+        //______________________________________________________________________
+        //
+        //       1   2   3   4   5   6   7
+        //    -----------------------------
+        //  1 |  O   O   O   O   O   O   O
+        //  2 |  O   O   O   O   O   O   O
+        //  3 |  O   O   O   O   O   O   O
+        //  4 |  O   O   O   O   O   O   O
+        //  5 |  O   O   O   O   O   O   O
+        //  6 |  O   O   O   O   O   O   O
+        //
+        // Important info for all methods that work with the boardArray:
+        //
+        // The boardArray's [0, 0] position is equivalent to the game board's
+        // top-left corner, with the [totColumns, totRows] position being the
+        // bottom-right corner.
+        //______________________________________________________________________
+
         // Search sequence in the positive tangent diagonal 
         // (1st and 3rd Quadrants)
         public bool SearchWinSeqTanPlus(int[] placedCoordinates)
