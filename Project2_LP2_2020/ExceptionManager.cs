@@ -4,6 +4,11 @@ namespace Project2_LP2_2020
 {
     public static class ExceptionManager
     {
+        /// <summary>
+        /// Method that sends an error message detailing the incident that 
+        /// happened
+        /// </summary>
+        /// <param name="errorCodes">Variable identifying the error</param>
         public static void ExceptionControl(ErrorCodes errorCodes)
         {
             switch(errorCodes)
@@ -12,8 +17,8 @@ namespace Project2_LP2_2020
                     Console.WriteLine("\nERROR: Requested Column Is Not Valid");
                     
                     Console.WriteLine(
-                        "The requested column is either out of range of the " + 
-                        "board or is completely full\n");
+                        "The requested column is either non-existant " + 
+                        "or is completely full.\n");
                     break;
             }
         }
