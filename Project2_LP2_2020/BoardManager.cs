@@ -8,9 +8,9 @@ namespace Project2_LP2_2020
     /// </summary>
     public class BoardManager
     {
-        Board board;
-        BoardFiller boardFiller;
-        BoardSearcher boardSearcher;
+        private Board board;
+        private BoardFiller boardFiller;
+        private BoardSearcher boardSearcher;
         
         /// <summary>
         /// Constructor creates an instance of the 'Board' class and shares 

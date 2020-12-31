@@ -12,7 +12,7 @@ namespace Project2_LP2_2020
         // a sequence
         int[] checkCoordinates = new int[2];
 
-        Board board;
+        private Board board;
 
         public BoardSearcher(Board board)
         {
