@@ -27,8 +27,11 @@ namespace Project2_LP2_2020.GameEngine
         private void SetupScene()
         {
             GameObject board = new GameObject("Board");
+            GameObject ui = new GameObject("UI");
             board.AddComponent(new BoardComponent());
+            ui.AddComponent(new UIComponent());
             gameObjects.Add(board);
+            gameObjects.Add(ui);
             // Criar gameObjects necessarios
             // componentes dos gameobjects
             // input
