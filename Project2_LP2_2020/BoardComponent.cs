@@ -30,7 +30,8 @@ namespace Project2_LP2_2020
 
         public override void Update()
         {
-            // Write Board
+            // Print game board
+            Console.WriteLine(board.GetBoardString());
 
             switch (Player_input)
             {
