@@ -6,35 +6,49 @@ namespace Project2_LP2_2020
     {
         /// <summary>
         /// 'Welcome' message with the general information 
-        /// (authors and game goal)
+        /// (authors, references and game goal)
         /// </summary>
         public static void Welcome()
         {
             Console.WriteLine("Welcome to Connect Four!");
 
             Console.WriteLine("\nImplementation developed by: " +
-            "Diogo Henriques, João Dias and Pedro Fernandes");
+                "Diogo Henriques, João Dias and Pedro Fernandes");
+
+            Console.WriteLine("With reference from the engine made available " +
+                "by Nuno Fachada");
 
             Console.WriteLine("\nEach color, Yellow (\"Y\") and Red (\"R\") " +
-            "corresponds to a player/competitor");
+                "corresponds to a player/competitor.");
 
-            Console.WriteLine("\nThe first color to have a sequence " +
-            "of four pieces (diagonally, vertically or horizontally) wins " +
-            "the game!");
+            Console.WriteLine("\nThe first color to have a sequence of " +
+                "four pieces (diagonally, vertically or horizontally) wins " +
+                "the game!");
         }
 
+        /// <summary>
+        /// Text showing the main game options
+        /// </summary>
         public static void Options()
         {
-            Console.WriteLine("\t'Q' - Start Match or Restart Match");
+            Console.WriteLine("\n\t'Q' - Start (or Restart) Match");
             Console.WriteLine("\t'A' - See 'Help' text");
             Console.WriteLine("\t'Z' - Leave Game");         
         }
 
+        /// <summary>
+        /// Tells the player to choose one column of the board to place a piece
+        /// </summary>
+        /// <param name="color">Color identifying the current player</param>
         public static void ColumnOptions(Color color)
         {
-            Console.WriteLine($"\t{0} player choose your column", color);
-            Console.WriteLine("\tChoose between 1 to 7");
-            Console.WriteLine("\tEach number corresponds to its respective column");
+            Console.WriteLine($"{0} player, it's your turn!\n", color);
+
+            Console.WriteLine("Choose the column for your piece.");
+            
+            Console.WriteLine(
+                "\nInput the number, from 1 to 7, corresponding to the " + 
+                "respective column (going from left to right)");
         }
 
         /// <summary>
