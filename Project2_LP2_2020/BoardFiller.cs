@@ -52,7 +52,7 @@ namespace Project2_LP2_2020
         /// player</param>
         /// <param name="color">The color of the piece (represents the 
         /// player)</param>
-        public void Add(int givenColumn, Color color)
+        public int Add(int givenColumn, Color color)
         {
             // Convert given number to account for array starting at '0'
             int boardColumn = givenColumn - 1;
@@ -70,6 +70,8 @@ namespace Project2_LP2_2020
 
             // Fill the lowest free space found in the column
             board.boardArray[boardColumn, currentRow] = color;
+
+            return currentRow;
         }
     }
 }

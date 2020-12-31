@@ -1,3 +1,6 @@
+using Project2_LP2_2020.GameEngine;
+using System.Data;
+
 namespace Project2_LP2_2020
 {
     /// <summary>
@@ -27,14 +30,20 @@ namespace Project2_LP2_2020
         /// </summary>
         /// <param name="givenColumn">Column number given by the player</param>
         /// <param name="playerColor">Identifies the current player</param>
-        private void TryAddingPiece(int givenColumn, Color playerColor)
+        public bool TryAddingPiece(int givenColumn, Color playerColor)
         {
+            bool canAdd = false;
             if (boardFiller.CanAdd(givenColumn))
             {
-                boardFiller.Add(givenColumn, playerColor);
+                canAdd = true;
             }
             else ExceptionManager.ExceptionControl(ErrorCodes.InvalidColumn);
+
+            return canAdd;
         }
+
+        public int AddPiece(int givenColumn, Color playerColor) =>
+            boardFiller.Add(givenColumn, playerColor); 
 
         /// <summary>
         /// Applies the 'SearchWinSeq' methods to search for a victory sequence
@@ -43,7 +52,7 @@ namespace Project2_LP2_2020
         /// <param name="pieceCoordinates">The location of the most recent 
         /// piece</param>
         /// <returns>Boolean indicating if there is a victory sequence</returns>
-        private bool CheckWin (int[] pieceCoordinates)
+        public bool CheckWin (int[] pieceCoordinates)
         {
             // If any of the 'SearchWinSeq' methods find a winning sequence
             // (returning a 'true' boolean), the method returns 'true' as well.
@@ -56,11 +65,38 @@ namespace Project2_LP2_2020
         }
 
         /// <summary>
+        /// Sends message announcing the end of the match, stating what end 
+        /// condition was met.
+        /// </summary>
+        /// <param name="gameStage">parameter that allows method to identify 
+        /// the end condition that made this method be called</param>
+        public string AnnounceWinner(GameStage gameStage)
+        {
+            string anounceState = "Match is Over";
+            switch (gameStage)
+            {
+                case GameStage.Draw:
+                    anounceState =  "\nIt's a DRAW!\n";
+                    break;
+
+                case GameStage.Yellow:
+                    anounceState = "\nIt's a Victory for YELLOW!\n";
+                    break;
+
+                case GameStage.Red:
+                    anounceState = "\nIt's a Victory for RED!\n";
+                    break;
+            }
+
+            return anounceState;
+        }
+
+        /// <summary>
         /// Accesses the Board class' ToString() method
         /// </summary>
         /// <returns>String returned by the Board class' ToString() 
         /// method</returns>
-        private string GetBoardString()
+        public string GetBoardString()
         {
             return board.ToString();
         }

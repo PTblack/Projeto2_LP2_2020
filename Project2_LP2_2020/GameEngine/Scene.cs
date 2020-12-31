@@ -26,6 +26,9 @@ namespace Project2_LP2_2020.GameEngine
         
         private void SetupScene()
         {
+            GameObject board = new GameObject("Board");
+            board.AddComponent(new BoardComponent());
+            gameObjects.Add(board);
             // Criar gameObjects necessarios
             // componentes dos gameobjects
             // input
@@ -39,6 +42,11 @@ namespace Project2_LP2_2020.GameEngine
             Console.Clear();
             running = true;
 
+            foreach (GameObject gameObject in gameObjects)
+            {
+                gameObject.Start();
+            }
+
             while(running)
             {
                 int current = DateTime.Now.Millisecond; // time of the new frame
@@ -47,21 +55,26 @@ namespace Project2_LP2_2020.GameEngine
 
                 lag += elapsed; // real time passed
 
+                foreach (GameObject gameObject in gameObjects)
+                {
+                    gameObject.Update();
+                }
+
                 //ProcessInput();
 
-                while( lag >= msPerFrame)
+                while ( lag >= msPerFrame)
                 {
                     // Update the game time until it's the same as real time
                     //Update();
                     lag -= msPerFrame;
                 }
-                // Render()
+                Render();
             }
         }
 
         private void Render()
         {
-            
+            //render do toString do boardComponent que é um gameObject da lista GameObjectes, os UIs.
         }
     }
 }
