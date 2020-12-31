@@ -14,7 +14,11 @@ namespace Project2_LP2_2020
         private GameStage gameStage;
         private PlayerInput Player_input;
 
-        private int[] ola;
+        // Coordinates for the placed piece 
+        // [0] = column (x) / [1] = row (y)
+        private int[] pieceCoords;
+
+        // Board column chosen (input) by the user
         private int column;
 
         public override void Start()
@@ -52,20 +56,22 @@ namespace Project2_LP2_2020
                 default:
                     break;
             }
-            ola[0] = column;
 
+            pieceCoords[0] = column;
+
+            // "Is it possible to add a piece of color 'color' in the 
+            // column 'column'?"
             if (board.TryAddingPiece(column, color))
             {
-                ola[1] = board.AddPiece(column, color);
+                // Add a piece of color 'color' in the column 'column', on 
+                // the lowest free row
+                pieceCoords[1] = board.AddPiece(column, color);
             }
 
-            if(board.CheckDraw())
-            {
-                gameStage = GameStage.Draw;
-                Console.WriteLine(board.AnnounceWinner(gameStage));
-            }
-
-            if (board.CheckWin(ola))
+            // "Did the placed piece created any winning sequence(s)"
+            // Then print 'victory message' according to the placed 
+            // piece's color
+            if (board.CheckWin(pieceCoords))
             {
                 if(color == Color.Yellow)
                     //Yellow player won
@@ -76,8 +82,22 @@ namespace Project2_LP2_2020
                     gameStage = GameStage.Red;
 
                 Console.WriteLine(board.AnnounceWinner(gameStage));
+                
+                // THE MATCH MUST BE ENDED HERE
             }
 
+            else
+            {
+                // "Is the board full?"
+                // Then announce that its a draw
+                if(board.CheckFull())
+                {
+                    gameStage = GameStage.Draw;
+                    Console.WriteLine(board.AnnounceWinner(gameStage));
+                }
+            }
+
+            // Change the color to reflect the change of turn in the game
             if (color == lastColor)
             {
                 if (lastColor == Color.Yellow) color = Color.Red;

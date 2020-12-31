@@ -33,17 +33,21 @@ namespace Project2_LP2_2020
         public bool TryAddingPiece(int givenColumn, Color playerColor)
         {
             bool canAdd = false;
-            if (boardFiller.CanAdd(givenColumn))
-            {
+            
+            if (boardFiller.CanAdd(givenColumn)) 
                 canAdd = true;
-            }
-            else ExceptionManager.ExceptionControl(ErrorCodes.InvalidColumn);
+            else 
+                ExceptionManager.ExceptionControl(ErrorCodes.InvalidColumn);
 
             return canAdd;
         }
 
-        public int AddPiece(int givenColumn, Color playerColor) =>
-            boardFiller.Add(givenColumn, playerColor); 
+        // Places piece in the lowest row of the chosen column and returns 
+        // the row of the placed piece
+        public int AddPiece(int givenColumn, Color playerColor)
+        {
+            return boardFiller.Add(givenColumn, playerColor);
+        }
 
         /// <summary>
         /// Applies the 'SearchWinSeq' methods to search for a victory sequence
@@ -62,6 +66,18 @@ namespace Project2_LP2_2020
                 boardSearcher.SearchWinSeqVert(pieceCoordinates))
                 return true;
             else return false;
+        }
+
+        /// <summary>
+        /// Checks if the board is completely full.
+        /// </summary>
+        /// <returns>Bool indicating if the board is full</returns>
+        public bool CheckFull()
+        {
+            bool isFull = false;
+            isFull = boardSearcher.BoardFull();
+
+            return isFull;
         }
 
         /// <summary>

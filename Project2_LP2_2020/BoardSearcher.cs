@@ -37,8 +37,31 @@ namespace Project2_LP2_2020
         // being the bottom-right corner.
         //______________________________________________________________________
 
-        // Search sequence in the positive tangent diagonal 
-        // (1st and 3rd Quadrants)
+        /// <summary>
+        /// Checks if the top row of the board has any free space, indicating 
+        /// that the board is not completely full
+        /// </summary>
+        /// <returns>Bool indicating if the board is full</returns>
+        public bool BoardFull()
+        {
+            bool isFull = true;
+
+            for (int col = 0; col < board.totColumns; col++)
+            {
+                if (board.boardArray[col, 0] == Color.None)
+                    isFull = false;
+
+            }
+
+            return isFull;
+        }
+        
+        /// <summary>
+        /// Search for sequences in the positive tangent diagonal
+        /// </summary>
+        /// <param name="placedCoordinates">The coordinates of the placed 
+        /// piece</param>
+        /// <returns>Bool indicating if a winning sequence was found</returns>
         public bool SearchWinSeqTanPlus(int[] placedCoordinates)
         {
             checkCoordinates = placedCoordinates;
@@ -114,8 +137,12 @@ namespace Project2_LP2_2020
             else return false;
         }
 
-        // Search sequence in the negative tangent diagonal 
-        // (2nd and 4th Quadrants)
+        /// <summary>
+        /// Search for sequences in the negative tangent diagonal
+        /// </summary>
+        /// <param name="placedCoordinates">The coordinates of the placed 
+        /// piece</param>
+        /// <returns>Bool indicating if a winning sequence was found</returns>
         public bool SearchWinSeqTanNeg(int[] placedCoordinates)
         {
             checkCoordinates = placedCoordinates;
@@ -191,7 +218,12 @@ namespace Project2_LP2_2020
             else return false;
         }
 
-        // Search sequence in the horizontal axis
+        /// <summary>
+        /// Search for sequences in the horizontal axis
+        /// </summary>
+        /// <param name="placedCoordinates">The coordinates of the placed 
+        /// piece</param>
+        /// <returns>Bool indicating if a winning sequence was found</returns>
         public bool SearchWinSeqHoriz(int[] placedCoordinates)
         {
             checkCoordinates = placedCoordinates;
@@ -263,7 +295,12 @@ namespace Project2_LP2_2020
             else return false;
         }
 
-        // Search sequence in the vertical axis
+        /// <summary>
+        /// Search for sequences in the vertical axis
+        /// </summary>
+        /// <param name="placedCoordinates">The coordinates of the placed 
+        /// piece</param>
+        /// <returns>Bool indicating if a winning sequence was found</returns>
         public bool SearchWinSeqVert(int[] placedCoordinates)
         {
             checkCoordinates = placedCoordinates;

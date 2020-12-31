@@ -28,12 +28,12 @@ namespace Project2_LP2_2020
         //______________________________________________________________________
 
         /// <summary>
-        /// Checks if a piece can be added to the chosen row.
+        /// Checks if the top row of the chosen column is free.
         /// </summary>
-        /// <param name="givenColumn">The chosen column as given by the 
-        /// player</param>
-        /// <returns>A bool indicating if the given column is a valid 
-        /// position to place a piece</returns>
+        /// <param name="givenColumn">Int identifying the column chosen by 
+        /// the player</param>
+        /// <returns>Bool stating if the top row of the chosen column 
+        /// is free</returns>
         public bool CanAdd(int givenColumn)
         {
             // Convert given number to account for array starting at '0'
@@ -45,13 +45,13 @@ namespace Project2_LP2_2020
         }
 
         /// <summary>
-        /// Adds the player piece to the chosen valid column in the lowest 
-        /// free space.
+        /// Places piece in the lowest row of the chosen column and returns 
+        /// the row of the placed piece.
         /// </summary>
-        /// <param name="givenColumn">The chosen column as given by the 
-        /// player</param>
-        /// <param name="color">The color of the piece (represents the 
-        /// player)</param>
+        /// <param name="givenColumn">The column chosen by the player</param>
+        /// <param name="color">The color of the piece/param>
+        /// <returns>Int with 'y' position of the placed piece in the 
+        /// boardArray</returns>
         public int Add(int givenColumn, Color color)
         {
             // Convert given number to account for array starting at '0'
