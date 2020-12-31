@@ -1,20 +1,13 @@
 namespace Project2_LP2_2020.GameEngine
 {
-    public class Component : IGameObject
+    // All game object components must implement this interface
+    public abstract class Component : BaseGameObject
     {
-        public virtual void Start()
-        {
-
-        }
+        // Reference to the parent game object
+        public GameObject ParentGameObject { get; internal set; }
         
-        public virtual void Update()
-        {
+        // Reference to the parent scene
+        public Scene ParentScene => ParentGameObject.ParentScene;
 
-        }
-
-        public virtual void Finish()
-        {
-
-        }
     }
 }

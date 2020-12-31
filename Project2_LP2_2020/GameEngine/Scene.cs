@@ -11,17 +11,19 @@ namespace Project2_LP2_2020.GameEngine
         private const int totRows = 6;
         private const int totColumns = 7;
         private const int msPerFrame = 17;
+        public readonly InputHandler inputHandler;
         private int frame;
         private bool running;
         private Thread gameThread;
         private ICollection<GameObject> gameObjects;
         private DoubleBuffer2D<char> buffer2D;
 
-        public Scene()
+        public Scene(InputHandler inputHandler)
         {
             gameObjects = new List<GameObject>();
             buffer2D = new DoubleBuffer2D<char>(totRows, totColumns);
             gameThread = new Thread(GameLoop);
+            this.inputHandler = inputHandler;
         }
         
         private void SetupScene()
