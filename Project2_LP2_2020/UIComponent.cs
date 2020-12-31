@@ -20,7 +20,6 @@ namespace Project2_LP2_2020
         }
         public override void Update()
         {
-            // Write Board.
 
             ui.ColumnOptions(color);
 
