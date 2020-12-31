@@ -25,34 +25,9 @@ namespace Project2_LP2_2020
 
         public static void Options()
         {
-            Console.WriteLine("Choose one of the following options:");
-            Console.WriteLine("\t'Q' - Start Match");
+            Console.WriteLine("\t'Q' - Start Match or Restart Match");
             Console.WriteLine("\t'A' - See 'Help' text");
             Console.WriteLine("\t'Z' - Leave Game");         
-        }
-
-        /// <summary>
-        /// Sends message announcing the end of the match, stating what end 
-        /// condition was met.
-        /// </summary>
-        /// <param name="gameStage">parameter that allows method to identify 
-        /// the end condition that made this method be called</param>
-        public static void AnnounceWinner(GameStage gameStage)
-        {
-            switch(gameStage)
-            {
-                case GameStage.Draw:
-                    Console.WriteLine("\nIt's a DRAW!\n");
-                    break;
-
-                case GameStage.Yellow:
-                    Console.WriteLine("\nIt's a Victory for YELLOW!\n");
-                    break;
-
-                case GameStage.Red:
-                    Console.WriteLine("\nIt's a Victory for RED!\n");
-                    break;
-            }
         }
 
         /// <summary>
