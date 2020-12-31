@@ -30,6 +30,13 @@ namespace Project2_LP2_2020
             Console.WriteLine("\t'Z' - Leave Game");         
         }
 
+        public static void ColumnOptions(Color color)
+        {
+            Console.WriteLine($"\t{0} player choose your column", color);
+            Console.WriteLine("\tChoose between 1 to 7");
+            Console.WriteLine("\tEach number corresponds to its respective column");
+        }
+
         /// <summary>
         /// 'Help' text with instructions on how to play and how the 
         /// program works
