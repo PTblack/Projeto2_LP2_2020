@@ -8,8 +8,10 @@ namespace Project2_LP2_2020.GameEngine
 {
     public class GameObject
     {
+        public Scene ParentScene { get; internal set; }
         public string Name { get; }
         private readonly ICollection<Component> components;
+        
         public GameObject(string name)
         {
             this.Name = name;
@@ -18,6 +20,9 @@ namespace Project2_LP2_2020.GameEngine
 
         public void AddComponent(Component component)
         {
+             // Specify reference to this game object in the component
+            component.ParentGameObject = this;
+            
             components.Add(component);
         }
 
