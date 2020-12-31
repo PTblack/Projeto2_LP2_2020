@@ -2,13 +2,13 @@ using System;
 
 namespace Project2_LP2_2020
 {
-    public static class UI
+    public class UI
     {
         /// <summary>
         /// 'Welcome' message with the general information 
         /// (authors, references and game goal)
         /// </summary>
-        public static void Welcome()
+        public void Welcome()
         {
             Console.WriteLine("Welcome to Connect Four!");
 
@@ -29,7 +29,7 @@ namespace Project2_LP2_2020
         /// <summary>
         /// Text showing the main game options
         /// </summary>
-        public static void Options()
+        public void Options()
         {
             Console.WriteLine("\n\t'Q' - Start (or Restart) Match");
             Console.WriteLine("\t'A' - See 'Help' text");
@@ -40,7 +40,7 @@ namespace Project2_LP2_2020
         /// Tells the player to choose one column of the board to place a piece
         /// </summary>
         /// <param name="color">Color identifying the current player</param>
-        public static void ColumnOptions(Color color)
+        public void ColumnOptions(Color color)
         {
             Console.WriteLine($"{0} player, it's your turn!\n", color);
 
@@ -55,7 +55,7 @@ namespace Project2_LP2_2020
         /// 'Help' text with instructions on how to play and how the 
         /// program works
         /// </summary>
-        public static void Help()
+        public void Help()
         {
             Console.WriteLine("---CHOOSING A PLAY---\n");
 
