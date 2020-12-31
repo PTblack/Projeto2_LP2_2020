@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Project2_LP2_2020.GameEngine
 {
-    // This component is an key observer
+    // This component is a key observer
     public class KeyObserver : Component, IObserver<ConsoleKey>
     {
         private IEnumerable<ConsoleKey> keysToObserve;
