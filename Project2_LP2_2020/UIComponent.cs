@@ -10,16 +10,19 @@ namespace Project2_LP2_2020
     {
         private Color color;
         private Color lastColor;
+        private UI ui = new UI();
         public override void Start()
         {
             color = Color.Yellow;
             lastColor = Color.None;
-            UI.Welcome();
-            UI.Options();
+            ui.Welcome();
+            ui.Options();
         }
         public override void Update()
         {
-            UI.ColumnOptions(color);
+            // Write Board.
+
+            ui.ColumnOptions(color);
 
             if (color == lastColor)
             {

@@ -30,6 +30,8 @@ namespace Project2_LP2_2020
 
         public override void Update()
         {
+            // Write Board
+
             switch (Player_input)
             {
                 case Player_input.1:
