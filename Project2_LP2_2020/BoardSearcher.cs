@@ -52,7 +52,6 @@ namespace Project2_LP2_2020
             {
                 if (board.boardArray[col, 0] == Color.None)
                     isFull = false;
-
             }
 
             return isFull;
@@ -74,7 +73,7 @@ namespace Project2_LP2_2020
             noValidSpaceNeg = false;
 
             // Variable to register size of current sequence
-            int sequenceCount = 0;
+            int sequenceCount = 1;
 
             // Check spaces at a distance fit for a sequence with 
             // the placedPiece
@@ -90,22 +89,20 @@ namespace Project2_LP2_2020
                     checkX += distance;
                     checkY -= distance;
 
-                    // Is the checked position outside the board or of a type 
-                    // different of the placedPiece?
-                    if (checkX >= board.totColumns ||
-                        checkY < 0 ||
-                        board.boardArray[checkX,
-                                         checkY] != 
-                        board.boardArray[placedCoordinates[0], 
-                                         placedCoordinates[1]])
-                    {
+                    // "Is the space outside the board?"
+                    if (checkX >= board.totColumns || checkY < 0)
                         noValidSpacePos = true;
-                    }
-                    // If the position is valid and of the wanted type
+
+                    // "Is the space of a different color from the placedPiece"? 
+                    else if (board.boardArray[checkX, checkY] != 
+                            board.boardArray[
+                            placedCoordinates[0], placedCoordinates[1]])
+                        noValidSpacePos = true;
+                    
+                    // The space is in the board and of the same type as 
+                    // the placedPiece
                     else
-                    {
                         sequenceCount++;
-                    }
                 }
 
                 // Reset checkCoordinates for operation with distance 
@@ -118,22 +115,20 @@ namespace Project2_LP2_2020
                     checkX -= distance;
                     checkY += distance;
 
-                    // Is the checked position outside the board or of a type 
-                    // different of the placedPiece?
-                    if (checkX < 0 ||
-                        checkY >= board.totRows ||
-                        board.boardArray[checkX,
-                                         checkY] != 
-                        board.boardArray[placedCoordinates[0], 
-                                         placedCoordinates[1]])
-                    {
+                    // "Is the space outside the board?"
+                    if (checkX < 0 || checkY >= board.totRows)
                         noValidSpaceNeg = true;
-                    }
-                    // If the position is valid and of the wanted type
+
+                    // "Is the space of a different color from the placedPiece"? 
+                    else if (board.boardArray[checkX, checkY] != 
+                            board.boardArray[
+                            placedCoordinates[0], placedCoordinates[1]])
+                        noValidSpaceNeg = true;
+                    
+                    // The space is in the board and of the same type as 
+                    // the placedPiece
                     else
-                    {
                         sequenceCount++;
-                    }
                 }
             }
             // if the sequence size reached 4 or more, declare a victory
@@ -157,7 +152,7 @@ namespace Project2_LP2_2020
             noValidSpaceNeg = false;
 
             // Variable to register size of current sequence
-            int sequenceCount = 0;
+            int sequenceCount = 1;
 
             // Check spaces at a distance fit for a sequence with 
             // the placedPiece
@@ -173,21 +168,20 @@ namespace Project2_LP2_2020
                     checkX -= distance;
                     checkY -= distance;
 
-                    // Is the checked position outside the board or of a type 
-                    // different of the placedPiece?
-                    if (checkX < 0 ||
-                        checkY < 0 ||
-                        board.boardArray[checkX, checkY] != 
-                        board.boardArray[placedCoordinates[0], 
-                                         placedCoordinates[1]])
-                    {
+                    // "Is the space outside the board?"
+                    if (checkX < 0 || checkY < 0)
                         noValidSpacePos = true;
-                    }
-                    // If the position is valid and of the wanted type
+
+                    // "Is the space of a different color from the placedPiece"? 
+                    else if (board.boardArray[checkX, checkY] != 
+                            board.boardArray[
+                            placedCoordinates[0], placedCoordinates[1]])
+                        noValidSpacePos = true;
+                    
+                    // The space is in the board and of the same type as 
+                    // the placedPiece
                     else
-                    {
                         sequenceCount++;
-                    }
                 }
 
                 // Reset checkCoordinates for operation with distance 
@@ -200,21 +194,20 @@ namespace Project2_LP2_2020
                     checkX += distance;
                     checkY += distance;
 
-                    // Is the checked position outside the board or of a type 
-                    // different of the placedPiece?
-                    if (checkX >= board.totColumns ||
-                        checkY >= board.totRows ||
-                        board.boardArray[checkX, checkY] != 
-                        board.boardArray[placedCoordinates[0], 
-                                         placedCoordinates[1]])
-                    {
+                    // "Is the space outside the board?"
+                    if (checkX >= board.totColumns || checkY >= board.totRows)
                         noValidSpaceNeg = true;
-                    }
-                    // If the position is valid and of the wanted type
+
+                    // "Is the space of a different color from the placedPiece"? 
+                    else if (board.boardArray[checkX, checkY] != 
+                            board.boardArray[
+                            placedCoordinates[0], placedCoordinates[1]])
+                        noValidSpaceNeg = true;
+                    
+                    // The space is in the board and of the same type as 
+                    // the placedPiece
                     else
-                    {
                         sequenceCount++;
-                    }
                 }
             }
 
@@ -239,7 +232,7 @@ namespace Project2_LP2_2020
             noValidSpaceNeg = false;
 
             // Variable to register size of current sequence
-            int sequenceCount = 0;
+            int sequenceCount = 1;
 
             // Check spaces at a distance fit for a sequence with 
             // the placedPiece
@@ -254,20 +247,20 @@ namespace Project2_LP2_2020
                     // Search in the 'positive X' field
                     checkX += distance;
 
-                    // Is the checked position outside the board or of a type 
-                    // different of the placedPiece?
-                    if (checkX >= board.totColumns ||
-                        board.boardArray[checkX, checkY] != 
-                        board.boardArray[placedCoordinates[0], 
-                                         placedCoordinates[1]])
-                    {
+                    // "Is the space outside the board?"
+                    if (checkX >= board.totColumns)
                         noValidSpacePos = true;
-                    }
-                    // If the position is valid and of the wanted type
+
+                    // "Is the space of a different color from the placedPiece"? 
+                    else if (board.boardArray[checkX, checkY] != 
+                            board.boardArray[
+                            placedCoordinates[0], placedCoordinates[1]])
+                        noValidSpacePos = true;
+                    
+                    // The space is in the board and of the same type as 
+                    // the placedPiece
                     else
-                    {
                         sequenceCount++;
-                    }
                 }
 
                 // Reset checkCoordinates for operation with distance 
@@ -279,20 +272,20 @@ namespace Project2_LP2_2020
                     // Search in the 'negative X' field
                     checkX -= distance;
 
-                    // Is the checked position outside the board or of a type 
-                    // different of the placedPiece?
-                    if (checkX < 0 ||
-                        board.boardArray[checkX, checkY] != 
-                        board.boardArray[placedCoordinates[0], 
-                                         placedCoordinates[1]])
-                    {
-                        noValidSpaceNeg = true;
-                    }
-                    // If the position is valid and of the wanted type
+                    // "Is the space outside the board?"
+                    if (checkX < 0)
+                        noValidSpacePos = true;
+
+                    // "Is the space of a different color from the placedPiece"? 
+                    else if (board.boardArray[checkX, checkY] != 
+                            board.boardArray[
+                            placedCoordinates[0], placedCoordinates[1]])
+                        noValidSpacePos = true;
+                    
+                    // The space is in the board and of the same type as 
+                    // the placedPiece
                     else
-                    {
                         sequenceCount++;
-                    }
                 }
             }
 
@@ -317,7 +310,7 @@ namespace Project2_LP2_2020
             noValidSpaceNeg = false;
 
             // Variable to register size of current sequence
-            int sequenceCount = 0;
+            int sequenceCount = 1;
 
             // Check spaces at a distance fit for a sequence with 
             // the placedPiece
@@ -332,20 +325,20 @@ namespace Project2_LP2_2020
                     // Search in the 'positive Y' field
                     checkY -= distance;
 
-                    // Is the checked position outside the board or of a type 
-                    // different of the placedPiece?
-                    if (checkY < 0 ||
-                        board.boardArray[checkX, checkY] != 
-                        board.boardArray[placedCoordinates[0], 
-                                         placedCoordinates[1]])
-                    {
+                    // "Is the space outside the board?"
+                    if (checkY < 0)
                         noValidSpacePos = true;
-                    }
-                    // If the position is valid and of the wanted type
+
+                    // "Is the space of a different color from the placedPiece"? 
+                    else if (board.boardArray[checkX, checkY] != 
+                            board.boardArray[
+                            placedCoordinates[0], placedCoordinates[1]])
+                        noValidSpacePos = true;
+                    
+                    // The space is in the board and of the same type as 
+                    // the placedPiece
                     else
-                    {
                         sequenceCount++;
-                    }
                 }
 
                 // Reset checkCoordinates for operation with distance 
@@ -355,22 +348,22 @@ namespace Project2_LP2_2020
                 if (noValidSpaceNeg == false)
                 {
                     // Search in the 'negative Y' field
-                    checkY += distance;////////////////////////////
+                    checkY += distance;
 
-                    // Is the checked position outside the board or of a type 
-                    // different of the placedPiece?
-                    if (checkY >= board.totRows ||
-                        board.boardArray[checkX, checkY] != 
-                        board.boardArray[placedCoordinates[0], 
-                                         placedCoordinates[1]])
-                    {
-                        noValidSpaceNeg = true;
-                    }
-                    // If the position is valid and of the wanted type
+                    // "Is the space outside the board?"
+                    if (checkY >= board.totRows)
+                        noValidSpacePos = true;
+
+                    // "Is the space of a different color from the placedPiece"? 
+                    else if (board.boardArray[checkX, checkY] != 
+                            board.boardArray[
+                            placedCoordinates[0], placedCoordinates[1]])
+                        noValidSpacePos = true;
+                    
+                    // The space is in the board and of the same type as 
+                    // the placedPiece
                     else
-                    {
                         sequenceCount++;
-                    }
                 }
             }
 
