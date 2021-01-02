@@ -72,7 +72,7 @@ namespace Project2_LP2_2020
            
            // Starts printing the top-row, progressing until reaching the 
            // end of the board (the bottom-row)
-            for (int ro = 0; ro < totRows; ro--)
+            for (int ro = 0; ro < totRows; ro++)
             {
                 Console.ForegroundColor = ConsoleColor.White;
                 boardString += "| ";
