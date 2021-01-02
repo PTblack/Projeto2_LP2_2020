@@ -1,4 +1,4 @@
-﻿using Project2_LP2_2020.GameEngine;
+﻿using CoreGameEngine;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,13 +14,6 @@ namespace Project2_LP2_2020
         private Color lastColor;
         private GameStage gameStage;
 
-        // Coordinates for the placed piece 
-        // [0] = column (x) / [1] = row (y)
-        private int[] pieceCoords;
-
-        // Board column chosen (input) by the user
-        private int column;
-
         public override void Start()
         {
             board = new BoardManager();
@@ -31,48 +24,50 @@ namespace Project2_LP2_2020
 
         public override void Update()
         {
+            // Coordinates for the placed piece 
+            // [0] = column (x) / [1] = row (y)
+            int[] pieceCoords = { 1 ,1 };
+
             // Print game board
-            Console.WriteLine(board.GetBoardString());
+           // Console.WriteLine(board.GetBoardString());
 
             foreach (ConsoleKey key in keyObserver.GetCurrentKeys())
             {
                 switch (key)
                 {
                     case ConsoleKey.D1:
-                        column = 1;
+                        pieceCoords[0] = 1;
                         break;
                     case ConsoleKey.D2:
-                        column = 2;
+                        pieceCoords[0] = 2;
                         break;
                     case ConsoleKey.D3:
-                        column = 3;
+                        pieceCoords[0] = 3;
                         break;
                     case ConsoleKey.D4:
-                        column = 4;
+                        pieceCoords[0] = 4;
                         break;
                     case ConsoleKey.D5:
-                        column = 5;
+                        pieceCoords[0] = 5;
                         break;
                     case ConsoleKey.D6:
-                        column = 6;
+                        pieceCoords[0] = 6;
                         break;
                     case ConsoleKey.D7:
-                        column = 7;
+                        pieceCoords[0] = 7;
                         break;
                     default:
                         break;
                 } 
             }
 
-            pieceCoords[0] = column;
-
             // "Is it possible to add a piece of color 'color' in the 
             // column 'column'?"
-            if (board.TryAddingPiece(column, color))
+            if (board.TryAddingPiece(pieceCoords[0], color))
             {
                 // Add a piece of color 'color' in the column 'column', on 
                 // the lowest free row
-                pieceCoords[1] = board.AddPiece(column, color);
+                pieceCoords[1] = board.AddPiece(pieceCoords[0], color);
             }
 
             // "Did the placed piece created any winning sequence(s)"

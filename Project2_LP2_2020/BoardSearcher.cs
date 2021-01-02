@@ -1,3 +1,5 @@
+using System;
+
 namespace Project2_LP2_2020
 {
     public class BoardSearcher
@@ -64,7 +66,8 @@ namespace Project2_LP2_2020
         /// <returns>Bool indicating if a winning sequence was found</returns>
         public bool SearchWinSeqTanPlus(int[] placedCoordinates)
         {
-            checkCoordinates = placedCoordinates;
+            int checkX = placedCoordinates[0];
+            int checkY = placedCoordinates[1];
 
             // Variables to check if there are more places to check for sequence
             noValidSpacePos = false;
@@ -78,20 +81,21 @@ namespace Project2_LP2_2020
             for (distance = 1; distance < 4; distance++)
             {
                 // Reset checkCoordinates for operation with distance 
-                checkCoordinates = placedCoordinates;
-                
+                checkX = placedCoordinates[0];
+                checkY = placedCoordinates[1];
+
                 if (noValidSpacePos == false)
                 {
                     // Search in the 1st Quadrant
-                    checkCoordinates[0] = checkCoordinates[0] + distance;
-                    checkCoordinates[1] = checkCoordinates[1] - distance;
+                    checkX += distance;
+                    checkY -= distance;
 
                     // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
-                    if (checkCoordinates[0] >= board.totColumns || 
-                        checkCoordinates[1] < 0 ||
-                        board.boardArray[checkCoordinates[0], 
-                                         checkCoordinates[1]] != 
+                    if (checkX >= board.totColumns ||
+                        checkY < 0 ||
+                        board.boardArray[checkX,
+                                         checkY] != 
                         board.boardArray[placedCoordinates[0], 
                                          placedCoordinates[1]])
                     {
@@ -105,20 +109,21 @@ namespace Project2_LP2_2020
                 }
 
                 // Reset checkCoordinates for operation with distance 
-                checkCoordinates = placedCoordinates;
-                
+                checkX = placedCoordinates[0];
+                checkY = placedCoordinates[1];
+
                 if (noValidSpaceNeg == false)
                 {
                     // Search in the 3rd Quadrant
-                    checkCoordinates[0] = checkCoordinates[0] - distance;
-                    checkCoordinates[1] = checkCoordinates[1] + distance;
+                    checkX -= distance;
+                    checkY += distance;
 
                     // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
-                    if (checkCoordinates[0] < 0 || 
-                        checkCoordinates[1] >= board.totRows ||
-                        board.boardArray[checkCoordinates[0], 
-                                         checkCoordinates[1]] != 
+                    if (checkX < 0 ||
+                        checkY >= board.totRows ||
+                        board.boardArray[checkX,
+                                         checkY] != 
                         board.boardArray[placedCoordinates[0], 
                                          placedCoordinates[1]])
                     {
@@ -131,7 +136,6 @@ namespace Project2_LP2_2020
                     }
                 }
             }
-
             // if the sequence size reached 4 or more, declare a victory
             if (sequenceCount >= 4) return true;
             else return false;
@@ -145,7 +149,8 @@ namespace Project2_LP2_2020
         /// <returns>Bool indicating if a winning sequence was found</returns>
         public bool SearchWinSeqTanNeg(int[] placedCoordinates)
         {
-            checkCoordinates = placedCoordinates;
+            int checkX = placedCoordinates[0];
+            int checkY = placedCoordinates[1];
 
             // Variables to check if there are more places to check for sequence
             noValidSpacePos = false;
@@ -159,20 +164,20 @@ namespace Project2_LP2_2020
             for (distance = 1; distance < 4; distance++)
             {
                 // Reset checkCoordinates for operation with distance 
-                checkCoordinates = placedCoordinates;
-                
+                checkX = placedCoordinates[0];
+                checkY = placedCoordinates[1];
+
                 if (noValidSpacePos == false)
                 {
                     // Search in the 2nd Quadrant
-                    checkCoordinates[0] = checkCoordinates[0] - distance;
-                    checkCoordinates[1] = checkCoordinates[1] - distance;
+                    checkX -= distance;
+                    checkY -= distance;
 
                     // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
-                    if (checkCoordinates[0] < 0 || 
-                        checkCoordinates[1] < 0 ||
-                        board.boardArray[checkCoordinates[0], 
-                                         checkCoordinates[1]] != 
+                    if (checkX < 0 ||
+                        checkY < 0 ||
+                        board.boardArray[checkX, checkY] != 
                         board.boardArray[placedCoordinates[0], 
                                          placedCoordinates[1]])
                     {
@@ -186,20 +191,20 @@ namespace Project2_LP2_2020
                 }
 
                 // Reset checkCoordinates for operation with distance 
-                checkCoordinates = placedCoordinates;
-                
+                checkX = placedCoordinates[0];
+                checkY = placedCoordinates[1];
+
                 if (noValidSpaceNeg == false)
                 {
                     // Search in the 4th Quadrant
-                    checkCoordinates[0] = checkCoordinates[0] + distance;
-                    checkCoordinates[1] = checkCoordinates[1] + distance;
+                    checkX += distance;
+                    checkY += distance;
 
                     // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
-                    if (checkCoordinates[0] >= board.totColumns || 
-                        checkCoordinates[1] >= board.totRows ||
-                        board.boardArray[checkCoordinates[0], 
-                                         checkCoordinates[1]] != 
+                    if (checkX >= board.totColumns ||
+                        checkY >= board.totRows ||
+                        board.boardArray[checkX, checkY] != 
                         board.boardArray[placedCoordinates[0], 
                                          placedCoordinates[1]])
                     {
@@ -226,7 +231,8 @@ namespace Project2_LP2_2020
         /// <returns>Bool indicating if a winning sequence was found</returns>
         public bool SearchWinSeqHoriz(int[] placedCoordinates)
         {
-            checkCoordinates = placedCoordinates;
+            int checkX = placedCoordinates[0];
+            int checkY = placedCoordinates[1];
 
             // Variables to check if there are more places to check for sequence
             noValidSpacePos = false;
@@ -240,18 +246,18 @@ namespace Project2_LP2_2020
             for (distance = 1; distance < 4; distance++)
             {
                 // Reset checkCoordinates for operation with distance 
-                checkCoordinates = placedCoordinates;
-                
+                checkX = placedCoordinates[0];
+                checkY = placedCoordinates[1];
+
                 if (noValidSpacePos == false)
                 {
                     // Search in the 'positive X' field
-                    checkCoordinates[0] = checkCoordinates[0] + distance;
+                    checkX += distance;
 
                     // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
-                    if (checkCoordinates[0] >= board.totColumns ||
-                        board.boardArray[checkCoordinates[0], 
-                                         checkCoordinates[1]] != 
+                    if (checkX >= board.totColumns ||
+                        board.boardArray[checkX, checkY] != 
                         board.boardArray[placedCoordinates[0], 
                                          placedCoordinates[1]])
                     {
@@ -265,18 +271,18 @@ namespace Project2_LP2_2020
                 }
 
                 // Reset checkCoordinates for operation with distance 
-                checkCoordinates = placedCoordinates;
-                
+                checkX = placedCoordinates[0];
+                checkY = placedCoordinates[1];
+
                 if (noValidSpaceNeg == false)
                 {
                     // Search in the 'negative X' field
-                    checkCoordinates[0] = checkCoordinates[0] - distance;
+                    checkX -= distance;
 
                     // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
-                    if (checkCoordinates[0] < 0 ||
-                        board.boardArray[checkCoordinates[0], 
-                                         checkCoordinates[1]] != 
+                    if (checkX < 0 ||
+                        board.boardArray[checkX, checkY] != 
                         board.boardArray[placedCoordinates[0], 
                                          placedCoordinates[1]])
                     {
@@ -303,7 +309,8 @@ namespace Project2_LP2_2020
         /// <returns>Bool indicating if a winning sequence was found</returns>
         public bool SearchWinSeqVert(int[] placedCoordinates)
         {
-            checkCoordinates = placedCoordinates;
+            int checkX = placedCoordinates[0];
+            int checkY = placedCoordinates[1];
 
             // Variables to check if there are more places to check for sequence
             noValidSpacePos = false;
@@ -317,18 +324,18 @@ namespace Project2_LP2_2020
             for (distance = 1; distance < 4; distance++)
             {
                 // Reset checkCoordinates for operation with distance 
-                checkCoordinates = placedCoordinates;
-                
+                checkX = placedCoordinates[0];
+                checkY = placedCoordinates[1];
+
                 if (noValidSpacePos == false)
                 {
                     // Search in the 'positive Y' field
-                    checkCoordinates[1] = checkCoordinates[1] - distance;
+                    checkY -= distance;
 
                     // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
-                    if (checkCoordinates[1] < 0 ||
-                        board.boardArray[checkCoordinates[0], 
-                                         checkCoordinates[1]] != 
+                    if (checkY < 0 ||
+                        board.boardArray[checkX, checkY] != 
                         board.boardArray[placedCoordinates[0], 
                                          placedCoordinates[1]])
                     {
@@ -342,18 +349,18 @@ namespace Project2_LP2_2020
                 }
 
                 // Reset checkCoordinates for operation with distance 
-                checkCoordinates = placedCoordinates;
-                
+                checkX = placedCoordinates[0];
+                checkY = placedCoordinates[1];
+
                 if (noValidSpaceNeg == false)
                 {
                     // Search in the 'negative Y' field
-                    checkCoordinates[0] = checkCoordinates[1] + distance;
+                    checkY += distance;////////////////////////////
 
                     // Is the checked position outside the board or of a type 
                     // different of the placedPiece?
-                    if (checkCoordinates[1] >= board.totRows ||
-                        board.boardArray[checkCoordinates[0], 
-                                         checkCoordinates[1]] != 
+                    if (checkY >= board.totRows ||
+                        board.boardArray[checkX, checkY] != 
                         board.boardArray[placedCoordinates[0], 
                                          placedCoordinates[1]])
                     {

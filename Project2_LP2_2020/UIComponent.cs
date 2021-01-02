@@ -1,8 +1,9 @@
-﻿using Project2_LP2_2020.GameEngine;
+﻿using Project2_LP2_2020;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using CoreGameEngine;
 
 namespace Project2_LP2_2020
 {

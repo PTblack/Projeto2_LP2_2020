@@ -1,12 +1,20 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * Author: Nuno Fachada
+ * */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Project2_LP2_2020.GameEngine
+namespace CoreGameEngine
 {
-    // This component is a key observer
+    // This component is an key observer
     public class KeyObserver : Component, IObserver<ConsoleKey>
     {
+
         private IEnumerable<ConsoleKey> keysToObserve;
         private Queue<ConsoleKey> observedKeys;
         private object queueLock;
@@ -43,6 +51,7 @@ namespace Project2_LP2_2020.GameEngine
                 observedKeys.Clear();
             }
             return currentKeys;
+
         }
     }
 }

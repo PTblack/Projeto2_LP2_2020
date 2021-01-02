@@ -37,7 +37,7 @@ namespace Project2_LP2_2020
         public bool CanAdd(int givenColumn)
         {
             // Convert given number to account for array starting at '0'
-            int boardColumn = givenColumn - 1;
+            int boardColumn = givenColumn -1;
 
             // If the highest space in the chosen column is free, return 'true'
             if (board.boardArray[boardColumn, 0] == Color.None) return true;

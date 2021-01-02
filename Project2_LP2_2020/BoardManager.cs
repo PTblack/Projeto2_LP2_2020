@@ -1,4 +1,4 @@
-using Project2_LP2_2020.GameEngine;
+using Project2_LP2_2020;
 using System.Data;
 
 namespace Project2_LP2_2020

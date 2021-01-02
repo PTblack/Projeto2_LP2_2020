@@ -1,9 +1,15 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * Author: Nuno Fachada
+ * */
 using System;
 using System.Linq;
 using System.Threading;
 using System.Collections.Generic;
 
-namespace Project2_LP2_2020.GameEngine
+namespace CoreGameEngine
 {
     // This class handle keyboard input, other objects can register themselves
     // as observers to listen to specific keys
