@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project2_LP2_2020.GameEngine;
+using System;
 
 namespace Project2_LP2_2020
 {
@@ -6,8 +7,8 @@ namespace Project2_LP2_2020
     {
         static void Main(string[] args)
         {
-            Board board = new Board();
-            Console.WriteLine(board);
+            ConsoleKey[] quitKeys = new ConsoleKey[] { ConsoleKey.Escape };
+            Scene scene = new Scene(new InputHandler(quitKeys));
             /*//---------------------------
             // Give default values for variables here (outside gameloop)
             GameStage gameStage = GameStage.Menus;

@@ -9,10 +9,10 @@ namespace Project2_LP2_2020
     public class BoardComponent : Component
     {
         private BoardManager board;
+        private KeyObserver keyObserver;
         private Color color;
         private Color lastColor;
         private GameStage gameStage;
-        private PlayerInput Player_input;
 
         // Coordinates for the placed piece 
         // [0] = column (x) / [1] = row (y)
@@ -24,6 +24,7 @@ namespace Project2_LP2_2020
         public override void Start()
         {
             board = new BoardManager();
+            keyObserver = ParentGameObject.GetComponent<KeyObserver>();
             color = Color.Yellow;
             lastColor = Color.None;
         }
@@ -33,31 +34,34 @@ namespace Project2_LP2_2020
             // Print game board
             Console.WriteLine(board.GetBoardString());
 
-            switch (Player_input)
+            foreach (ConsoleKey key in keyObserver.GetCurrentKeys())
             {
-                case Player_input.1:
-                    column = 1;
-                    break;
-                case Player_input.2:
-                    column = 2;
-                    break;
-                case Player_input.3:
-                    column = 3;
-                    break;
-                case Player_input.4:
-                    column = 4;
-                    break;
-                case Player_input.5:
-                    column = 5;
-                    break;
-                case Player_input.6:
-                    column = 6;
-                    break;
-                case Player_input.7:
-                    column = 7;
-                    break;
-                default:
-                    break;
+                switch (key)
+                {
+                    case ConsoleKey.D1:
+                        column = 1;
+                        break;
+                    case ConsoleKey.D2:
+                        column = 2;
+                        break;
+                    case ConsoleKey.D3:
+                        column = 3;
+                        break;
+                    case ConsoleKey.D4:
+                        column = 4;
+                        break;
+                    case ConsoleKey.D5:
+                        column = 5;
+                        break;
+                    case ConsoleKey.D6:
+                        column = 6;
+                        break;
+                    case ConsoleKey.D7:
+                        column = 7;
+                        break;
+                    default:
+                        break;
+                } 
             }
 
             pieceCoords[0] = column;

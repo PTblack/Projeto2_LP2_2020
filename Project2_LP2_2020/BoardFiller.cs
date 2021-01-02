@@ -1,6 +1,6 @@
 namespace Project2_LP2_2020
 {
-    public class BoardFiller
+    public class BoardFiller 
     {
         private Board board;
 

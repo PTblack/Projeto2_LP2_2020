@@ -19,6 +19,7 @@ namespace Project2_LP2_2020
         /// </summary>
         public BoardManager()
         {
+            
             board = new Board();
             boardFiller = new BoardFiller(board);
             boardSearcher = new BoardSearcher(board);
