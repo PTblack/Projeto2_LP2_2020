@@ -27,75 +27,89 @@ namespace Project2_LP2_2020
         {
             board = new BoardManager();
             keyObserver = ParentGameObject.GetComponent<KeyObserver>();
+            // Yellow plays first
             color = Color.Yellow;
             animation = false;
 
             playersPixels = new Dictionary<Vector2, ConsolePixel>();
 
             RedPlayerPixel = new ConsolePixel(
-               'R', ConsoleColor.Red, ConsoleColor.DarkCyan);
+                'R', ConsoleColor.Red, ConsoleColor.DarkCyan);
             YellowPlayerPixel = new ConsolePixel(
-              'Y', ConsoleColor.Yellow, ConsoleColor.DarkCyan);
+                'Y', ConsoleColor.Yellow, ConsoleColor.DarkCyan);
         }
 
         public override void Update()
         {
             animation = !animation;
-            // Coordinates for the placed piece 
+
+            // Default coordinates for the placed piece 
             // [0] = column (x) / [1] = row (y)
-            int[] pieceCoords = {0,0};
+            int[] pieceCoords = {0, 0};
 
             // Print game board
             UI.ColumnOptions(color, ParentScene, animation);
 
             foreach (ConsoleKey key in keyObserver.GetCurrentKeys())
             {
-                // Convert player's input to the specificied boardColumn 
+                // Convert player's input to the specificied boardColumn
                 // accounting for the array's [0, 0] space
                 switch (key)
                 {
                     case ConsoleKey.D1:
-                        pieceCoords[0] = 1;
+                        pieceCoords[0] = 0;
                         keyPressed = true;
                         break;
                     case ConsoleKey.D2:
-                        pieceCoords[0] = 2;
+                        pieceCoords[0] = 1;
                         keyPressed = true;
                         break;
                     case ConsoleKey.D3:
-                        pieceCoords[0] = 3;
+                        pieceCoords[0] = 2;
                         keyPressed = true;
                         break;
                     case ConsoleKey.D4:
-                        pieceCoords[0] = 4;
+                        pieceCoords[0] = 3;
                         keyPressed = true;
                         break;
                     case ConsoleKey.D5:
-                        pieceCoords[0] = 5;
+                        pieceCoords[0] = 4;
                         keyPressed = true;
                         break;
                     case ConsoleKey.D6:
-                        pieceCoords[0] = 6;
+                        pieceCoords[0] = 5;
                         keyPressed = true;
                         break;
                     case ConsoleKey.D7:
-                        pieceCoords[0] = 7;
+                        pieceCoords[0] = 6;
                         keyPressed = true;
                         break;
                 }
             }
             if (keyPressed)
             {
-                // "Is it possible to add a piece of color 'color' in the 
-                // column 'column'?"
-                if (board.TryAddingPiece(pieceCoords[0], color))
+                // "Is it possible to add a piece in the chosen column?"
+                if (board.TryAddingPiece(pieceCoords[0]))
                 {
                     // Add a piece of color 'color' in the column 'column', on 
-                    // the lowest free row
+                    // the lowest free row, returning its 'y' coordinate
                     pieceCoords[1] = board.AddPiece(pieceCoords[0], color);
 
-                    if (color == Color.Red) playersPixels[new Vector2(pieceCoords[0], pieceCoords[1])] = RedPlayerPixel;
-                    else playersPixels[new Vector2(pieceCoords[0], pieceCoords[1])] = YellowPlayerPixel;
+                    // Change color of pixel to paint placed piece with the 
+                    // right color
+                    if (color == Color.Red)
+                    {
+                        playersPixels[
+                            new Vector2(pieceCoords[0], pieceCoords[1])] = 
+                            RedPlayerPixel;
+                    }
+                    else if (color == Color.Yellow)
+                    {
+                        playersPixels[
+                            new Vector2(pieceCoords[0], pieceCoords[1])] = 
+                            YellowPlayerPixel;
+                    }
+                    
                     ChangePlayer();
                 }
 
@@ -123,15 +137,13 @@ namespace Project2_LP2_2020
             // Then announce that its a draw
             if(board.CheckFull())
             {
-                gameStage = GameStage.Draw;
-                Console.WriteLine(board.AnnounceWinner(gameStage));
+                Console.WriteLine(board.AnnounceWinner(GameStage.Draw));
             }
         }
 
         private void ChangePlayer()
         {
             if (color == Color.Yellow) color = Color.Red;
-
             else if (color == Color.Red) color = Color.Yellow;
         }
     }
