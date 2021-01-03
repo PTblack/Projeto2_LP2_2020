@@ -47,8 +47,11 @@ namespace Project2_LP2_2020
 
             // Print game board
             UI.ColumnOptions(color, ParentScene, animation);
+
             foreach (ConsoleKey key in keyObserver.GetCurrentKeys())
             {
+                // Convert player's input to the specificied boardColumn 
+                // accounting for the array's [0, 0] space
                 switch (key)
                 {
                     case ConsoleKey.D1:

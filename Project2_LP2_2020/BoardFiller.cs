@@ -40,7 +40,7 @@ namespace Project2_LP2_2020
         {
             // Convert given number to account for array starting at '0'
             int boardColumn = givenColumn -1;
-            Console.WriteLine(boardColumn);
+
 
             // If the highest space in the chosen column is free, return 'true'
             if (board.boardArray[boardColumn, 0] == Color.None) return true;
@@ -57,8 +57,7 @@ namespace Project2_LP2_2020
         /// boardArray</returns>
         public int Add(int givenColumn, Color color)
         {
-            // Convert given number to account for array starting at '0'
-            int boardColumn = givenColumn - 1;
+            int boardColumn = givenColumn;
 
             // Loop starts at the top where the only garanteed free space is
             int currentRow = 0;

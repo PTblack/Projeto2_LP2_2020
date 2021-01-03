@@ -31,8 +31,7 @@ namespace Project2_LP2_2020
         /// Else, send an error message.
         /// </summary>
         /// <param name="givenColumn">Column number given by the player</param>
-        /// <param name="playerColor">Identifies the current player</param>
-        public bool TryAddingPiece(int givenColumn, Color playerColor)
+        public bool TryAddingPiece(int givenColumn)
         {
             bool canAdd = false;
             if (boardFiller.CanAdd(givenColumn)) 
@@ -89,23 +88,23 @@ namespace Project2_LP2_2020
         /// the end condition that made this method be called</param>
         public string AnnounceWinner(GameStage gameStage)
         {
-            string anounceState = "Match is Over";
+            string announceState = "Match is Over";
             switch (gameStage)
             {
                 case GameStage.Draw:
-                    anounceState =  "\nIt's a DRAW!\n";
+                    announceState =  "\nIt's a DRAW!\n";
                     break;
 
                 case GameStage.Yellow:
-                    anounceState = "\nIt's a Victory for YELLOW!\n";
+                    announceState = "\nIt's a Victory for YELLOW!\n";
                     break;
 
                 case GameStage.Red:
-                    anounceState = "\nIt's a Victory for RED!\n";
+                    announceState = "\nIt's a Victory for RED!\n";
                     break;
             }
 
-            return anounceState;
+            return announceState;
         }
 
         /// <summary>
