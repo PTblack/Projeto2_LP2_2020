@@ -11,18 +11,32 @@ namespace Project2_LP2_2020
     {
         private Color color;
         private Color lastColor;
-        private UI ui = new UI();
+        private KeyObserver keyObserver;
+
         public override void Start()
         {
+            keyObserver = ParentGameObject.GetComponent<KeyObserver>();
             color = Color.Yellow;
             lastColor = Color.None;
-            ui.Welcome();
-            ui.Options();
         }
         public override void Update()
         {
-
-            ui.ColumnOptions(color);
+            foreach (ConsoleKey key in keyObserver.GetCurrentKeys())
+            {
+                switch (key)
+                {
+                    case ConsoleKey.H:
+                        if(ParentScene.paused) ParentScene.paused = false;
+                        else
+                        {
+                            ParentScene.paused = true;
+                            UI.Help();
+                        }                       
+                        break;
+                    case ConsoleKey.Q:
+                        break;
+                }
+            }
 
             if (color == lastColor)
             {

@@ -1,14 +1,16 @@
+using CoreGameEngine;
 using System;
+using static System.Console;
 
 namespace Project2_LP2_2020
 {
-    public class UI
+    public static class UI
     {
         /// <summary>
         /// 'Welcome' message with the general information 
         /// (authors, references and game goal)
         /// </summary>
-        public void Welcome()
+        public static void Welcome()
         {
             Console.WriteLine("Welcome to Connect Four!");
 
@@ -29,33 +31,57 @@ namespace Project2_LP2_2020
         /// <summary>
         /// Text showing the main game options
         /// </summary>
-        public void Options()
+        public static void Options()
         {
-            Console.WriteLine("\n\t'Q' - Start (or Restart) Match");
-            Console.WriteLine("\t'A' - See 'Help' text");
-            Console.WriteLine("\t'Z' - Leave Game");         
+            bool choosing = true;
+            while (choosing)
+            {
+                Console.WriteLine("\n'Q' - Start Match");
+                Console.WriteLine("'H' - See 'Help' text");
+                Console.WriteLine("'Escape' - Leave Game");
+                string readKey = Console.ReadLine().Trim().ToLower();
+                switch (readKey)
+                {
+                    case "h":
+                        UI.Help();
+                        break;
+                    case "q":
+                        choosing = false;
+                        break;
+                    case "escape":
+                        
+                        break;
+                }
+            }      
         }
 
         /// <summary>
         /// Tells the player to choose one column of the board to place a piece
         /// </summary>
         /// <param name="color">Color identifying the current player</param>
-        public void ColumnOptions(Color color)
+        public static void ColumnOptions(Color color, Scene scene, bool animation)
         {
-            Console.WriteLine($"{0} player, it's your turn!\n", color);
+            if (!scene.paused)
+            {
+                BackgroundColor = ConsoleColor.Black;
+                Console.WriteLine("\n{0} player, it's your turn!    \n", color);
 
-            Console.WriteLine("Choose the column for your piece.");
-            
-            Console.WriteLine(
-                "\nInput the number, from 1 to 7, corresponding to the " + 
-                "respective column (going from left to right)");
+                Console.WriteLine("Choose the column for your piece.");
+
+                Console.WriteLine(
+                    "\nInput the number, from 1 to 7, corresponding to the " +
+                    "respective column (going from left to right)");
+
+                if (animation) Console.WriteLine("\nWaiting. ");
+                else Console.WriteLine("\nWaiting..");
+            } 
         }
 
         /// <summary>
         /// 'Help' text with instructions on how to play and how the 
         /// program works
         /// </summary>
-        public void Help()
+        public static void Help()
         {
             Console.WriteLine("---CHOOSING A PLAY---\n");
 
