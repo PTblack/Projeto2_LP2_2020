@@ -17,9 +17,11 @@ namespace Project2_LP2_2020
 
         // Program starts here
         public static void Main(string[] args)
-        { 
+        {
             // Create a new small game and run it
             Program Connect4 = new Program();
+            UI.Welcome();
+            UI.Options();
             Connect4.Run();
         }
 
@@ -40,13 +42,15 @@ namespace Project2_LP2_2020
             quitter.AddComponent(new Quitter());
             gameScene.AddGameObject(quitter);
 
-            // Create player object
-            char[,] playerSprite =
-            {
-                { '-', '|', '-'},
-                { '-', '0', '-'},
-                { '-', '|', '-'}
-            };
+            // Create Menu object
+            GameObject menu = new GameObject("Menu");
+            KeyObserver menuListener = new KeyObserver(new ConsoleKey[]
+                { ConsoleKey.H, ConsoleKey.Q });
+            menu.AddComponent(menuListener);
+            menu.AddComponent(new UIComponent());
+            gameScene.AddGameObject(menu);
+
+            // Create player object         
             GameObject player = new GameObject("Player");
             KeyObserver playerKeyListener = new KeyObserver(new ConsoleKey[] {
                 ConsoleKey.D1,
@@ -57,17 +61,14 @@ namespace Project2_LP2_2020
                 ConsoleKey.D6,
                 ConsoleKey.D7});
             player.AddComponent(playerKeyListener);
-            /*Position playerPos = new Position(10f, 10f, 0f);
-            player.AddComponent(playerPos);*/
             player.AddComponent(new BoardComponent());
-            player.AddComponent(new ConsoleSprite(
-                playerSprite, ConsoleColor.Red, ConsoleColor.DarkGreen));
+            player.AddComponent(new Position());
             gameScene.AddGameObject(player);
 
             // Create walls
             GameObject walls = new GameObject("Walls");
             ConsolePixel wallPixel = new ConsolePixel(
-                '#', ConsoleColor.Blue, ConsoleColor.White);
+                '#', ConsoleColor.White, ConsoleColor.DarkCyan);
             Dictionary<Vector2, ConsolePixel> wallPixels =
                 new Dictionary<Vector2, ConsolePixel>();
             for (int x = 0; x < xdim; x++)

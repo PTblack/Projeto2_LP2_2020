@@ -1,5 +1,6 @@
 using Project2_LP2_2020;
 using System.Data;
+using System;
 
 namespace Project2_LP2_2020
 {
@@ -33,7 +34,6 @@ namespace Project2_LP2_2020
         public bool TryAddingPiece(int givenColumn)
         {
             bool canAdd = false;
-            
             if (boardFiller.CanAdd(givenColumn)) 
                 canAdd = true;
             else 
