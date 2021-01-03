@@ -89,20 +89,22 @@ namespace Project2_LP2_2020
                     checkX += distance;
                     checkY -= distance;
 
-                    // "Is the space outside the board?"
-                    if (checkX >= board.totColumns || checkY < 0)
-                        noValidSpacePos = true;
-
-                    // "Is the space of a different color from the placedPiece"? 
-                    else if (board.boardArray[checkX, checkY] != 
+                    // "Is the space INSIDE the board?"
+                    if (checkX < board.totColumns && checkY >= 0)
+                    {
+                        // "Is the space of the SAME color as the placedPiece?"
+                        if (board.boardArray[checkX, checkY] == 
                             board.boardArray[
                             placedCoordinates[0], placedCoordinates[1]])
-                        noValidSpacePos = true;
-                    
-                    // The space is in the board and of the same type as 
-                    // the placedPiece
+                        
+                            sequenceCount++;
+                        
+                        else
+                            noValidSpacePos = true;
+                    }
+
                     else
-                        sequenceCount++;
+                        noValidSpacePos = true;
                 }
 
                 // Reset checkCoordinates for operation with distance 
@@ -115,20 +117,22 @@ namespace Project2_LP2_2020
                     checkX -= distance;
                     checkY += distance;
 
-                    // "Is the space outside the board?"
-                    if (checkX < 0 || checkY >= board.totRows)
-                        noValidSpaceNeg = true;
-
-                    // "Is the space of a different color from the placedPiece"? 
-                    else if (board.boardArray[checkX, checkY] != 
+                    // "Is the space INSIDE the board?"
+                    if (checkX >= 0 && checkY < board.totRows)
+                    {
+                        // "Is the space of the SAME color as the placedPiece?"
+                        if (board.boardArray[checkX, checkY] == 
                             board.boardArray[
                             placedCoordinates[0], placedCoordinates[1]])
-                        noValidSpaceNeg = true;
-                    
-                    // The space is in the board and of the same type as 
-                    // the placedPiece
+                        
+                            sequenceCount++;
+                        
+                        else
+                            noValidSpaceNeg = true;
+                    }
+
                     else
-                        sequenceCount++;
+                        noValidSpaceNeg = true;
                 }
             }
             // if the sequence size reached 4 or more, declare a victory
@@ -168,20 +172,22 @@ namespace Project2_LP2_2020
                     checkX -= distance;
                     checkY -= distance;
 
-                    // "Is the space outside the board?"
-                    if (checkX < 0 || checkY < 0)
-                        noValidSpacePos = true;
-
-                    // "Is the space of a different color from the placedPiece"? 
-                    else if (board.boardArray[checkX, checkY] != 
+                    // "Is the space INSIDE the board?"
+                    if (checkX >= 0 && checkY >= 0)
+                    {
+                        // "Is the space of the SAME color as the placedPiece?"
+                        if (board.boardArray[checkX, checkY] == 
                             board.boardArray[
                             placedCoordinates[0], placedCoordinates[1]])
-                        noValidSpacePos = true;
-                    
-                    // The space is in the board and of the same type as 
-                    // the placedPiece
+                        
+                            sequenceCount++;
+                        
+                        else
+                            noValidSpacePos = true;
+                    }
+
                     else
-                        sequenceCount++;
+                        noValidSpacePos = true;
                 }
 
                 // Reset checkCoordinates for operation with distance 
@@ -194,20 +200,22 @@ namespace Project2_LP2_2020
                     checkX += distance;
                     checkY += distance;
 
-                    // "Is the space outside the board?"
-                    if (checkX >= board.totColumns || checkY >= board.totRows)
-                        noValidSpaceNeg = true;
-
-                    // "Is the space of a different color from the placedPiece"? 
-                    else if (board.boardArray[checkX, checkY] != 
+                    // "Is the space INSIDE the board?"
+                    if (checkX < board.totColumns && checkY < board.totRows)
+                    {
+                        // "Is the space of the SAME color as the placedPiece?"
+                        if (board.boardArray[checkX, checkY] == 
                             board.boardArray[
                             placedCoordinates[0], placedCoordinates[1]])
-                        noValidSpaceNeg = true;
-                    
-                    // The space is in the board and of the same type as 
-                    // the placedPiece
+                        
+                            sequenceCount++;
+                        
+                        else
+                            noValidSpaceNeg = true;
+                    }
+
                     else
-                        sequenceCount++;
+                        noValidSpaceNeg = true;
                 }
             }
 
@@ -247,20 +255,22 @@ namespace Project2_LP2_2020
                     // Search in the 'positive X' field
                     checkX += distance;
 
-                    // "Is the space outside the board?"
-                    if (checkX >= board.totColumns)
-                        noValidSpacePos = true;
-
-                    // "Is the space of a different color from the placedPiece"? 
-                    else if (board.boardArray[checkX, checkY] != 
+                    // "Is the space INSIDE the board?"
+                    if (checkX < board.totColumns)
+                    {
+                        // "Is the space of the SAME color as the placedPiece?"
+                        if (board.boardArray[checkX, checkY] == 
                             board.boardArray[
                             placedCoordinates[0], placedCoordinates[1]])
-                        noValidSpacePos = true;
-                    
-                    // The space is in the board and of the same type as 
-                    // the placedPiece
+                        
+                            sequenceCount++;
+                        
+                        else
+                            noValidSpacePos = true;
+                    }
+
                     else
-                        sequenceCount++;
+                        noValidSpacePos = true;
                 }
 
                 // Reset checkCoordinates for operation with distance 
@@ -272,20 +282,22 @@ namespace Project2_LP2_2020
                     // Search in the 'negative X' field
                     checkX -= distance;
 
-                    // "Is the space outside the board?"
-                    if (checkX < 0)
-                        noValidSpacePos = true;
-
-                    // "Is the space of a different color from the placedPiece"? 
-                    else if (board.boardArray[checkX, checkY] != 
+                    // "Is the space INSIDE the board?"
+                    if (checkX >= 0)
+                    {
+                        // "Is the space of the SAME color as the placedPiece?"
+                        if (board.boardArray[checkX, checkY] == 
                             board.boardArray[
                             placedCoordinates[0], placedCoordinates[1]])
-                        noValidSpacePos = true;
-                    
-                    // The space is in the board and of the same type as 
-                    // the placedPiece
+                        
+                            sequenceCount++;
+                        
+                        else
+                            noValidSpaceNeg = true;
+                    }
+
                     else
-                        sequenceCount++;
+                        noValidSpaceNeg = true;
                 }
             }
 
@@ -325,20 +337,22 @@ namespace Project2_LP2_2020
                     // Search in the 'positive Y' field
                     checkY -= distance;
 
-                    // "Is the space outside the board?"
-                    if (checkY < 0)
-                        noValidSpacePos = true;
-
-                    // "Is the space of a different color from the placedPiece"? 
-                    else if (board.boardArray[checkX, checkY] != 
+                    // "Is the space INSIDE the board?"
+                    if (checkY >= 0)
+                    {
+                        // "Is the space of the SAME color as the placedPiece?"
+                        if (board.boardArray[checkX, checkY] == 
                             board.boardArray[
                             placedCoordinates[0], placedCoordinates[1]])
-                        noValidSpacePos = true;
-                    
-                    // The space is in the board and of the same type as 
-                    // the placedPiece
+                        
+                            sequenceCount++;
+                        
+                        else
+                            noValidSpacePos = true;
+                    }
+
                     else
-                        sequenceCount++;
+                        noValidSpacePos = true;
                 }
 
                 // Reset checkCoordinates for operation with distance 
@@ -350,20 +364,22 @@ namespace Project2_LP2_2020
                     // Search in the 'negative Y' field
                     checkY += distance;
 
-                    // "Is the space outside the board?"
-                    if (checkY >= board.totRows)
-                        noValidSpacePos = true;
-
-                    // "Is the space of a different color from the placedPiece"? 
-                    else if (board.boardArray[checkX, checkY] != 
+                    // "Is the space INSIDE the board?"
+                    if (checkY < board.totRows)
+                    {
+                        // "Is the space of the SAME color as the placedPiece?"
+                        if (board.boardArray[checkX, checkY] == 
                             board.boardArray[
                             placedCoordinates[0], placedCoordinates[1]])
-                        noValidSpacePos = true;
-                    
-                    // The space is in the board and of the same type as 
-                    // the placedPiece
+                        
+                            sequenceCount++;
+                        
+                        else
+                            noValidSpaceNeg = true;
+                    }
+
                     else
-                        sequenceCount++;
+                        noValidSpaceNeg = true;
                 }
             }
 
