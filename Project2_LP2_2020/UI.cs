@@ -39,17 +39,16 @@ namespace Project2_LP2_2020
                 Console.WriteLine("\n'Q' - Start Match");
                 Console.WriteLine("'H' - See 'Help' text");
                 Console.WriteLine("'Escape' - Leave Game");
-                string readKey = Console.ReadLine().Trim().ToLower();
-                switch (readKey)
+                ConsoleKeyInfo readKey = Console.ReadKey();
+                switch (readKey.Key)
                 {
-                    case "h":
+                    case ConsoleKey.H:
                         UI.Help();
                         break;
-                    case "q":
+                    case ConsoleKey.Q:
                         choosing = false;
                         break;
-                    case "escape":
-                        
+                    case ConsoleKey.Escape:
                         break;
                 }
             }      
