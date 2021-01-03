@@ -1,111 +1,135 @@
 ﻿using CoreGameEngine;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Project2_LP2_2020
 {
-    public class BoardComponent : Component
+    public class BoardComponent : RenderableComponent
     {
         private BoardManager board;
         private KeyObserver keyObserver;
         private Color color;
-        private Color lastColor;
+
         private GameStage gameStage;
+        private bool animation, keyPressed;
+        ConsolePixel RedPlayerPixel, YellowPlayerPixel;
+        Dictionary<Vector2, ConsolePixel> playersPixels;
+
+        public override IEnumerable<KeyValuePair<Vector2, ConsolePixel>> Pixels
+        {
+            get => playersPixels;
+        }
 
         public override void Start()
         {
             board = new BoardManager();
             keyObserver = ParentGameObject.GetComponent<KeyObserver>();
             color = Color.Yellow;
-            lastColor = Color.None;
+            animation = false;
+
+            playersPixels = new Dictionary<Vector2, ConsolePixel>();
+
+            RedPlayerPixel = new ConsolePixel(
+               'R', ConsoleColor.Red, ConsoleColor.DarkCyan);
+            YellowPlayerPixel = new ConsolePixel(
+              'Y', ConsoleColor.Yellow, ConsoleColor.DarkCyan);
         }
 
         public override void Update()
         {
+            animation = !animation;
             // Coordinates for the placed piece 
             // [0] = column (x) / [1] = row (y)
-            int[] pieceCoords = { 1 ,1 };
+            int[] pieceCoords = {0,0};
 
             // Print game board
-           // Console.WriteLine(board.GetBoardString());
-
+            UI.ColumnOptions(color, ParentScene, animation);
             foreach (ConsoleKey key in keyObserver.GetCurrentKeys())
             {
                 switch (key)
                 {
                     case ConsoleKey.D1:
                         pieceCoords[0] = 1;
+                        keyPressed = true;
                         break;
                     case ConsoleKey.D2:
                         pieceCoords[0] = 2;
+                        keyPressed = true;
                         break;
                     case ConsoleKey.D3:
                         pieceCoords[0] = 3;
+                        keyPressed = true;
                         break;
                     case ConsoleKey.D4:
                         pieceCoords[0] = 4;
+                        keyPressed = true;
                         break;
                     case ConsoleKey.D5:
                         pieceCoords[0] = 5;
+                        keyPressed = true;
                         break;
                     case ConsoleKey.D6:
                         pieceCoords[0] = 6;
+                        keyPressed = true;
                         break;
                     case ConsoleKey.D7:
                         pieceCoords[0] = 7;
+                        keyPressed = true;
                         break;
-                    default:
-                        break;
-                } 
-            }
-
-            // "Is it possible to add a piece of color 'color' in the 
-            // column 'column'?"
-            if (board.TryAddingPiece(pieceCoords[0], color))
-            {
-                // Add a piece of color 'color' in the column 'column', on 
-                // the lowest free row
-                pieceCoords[1] = board.AddPiece(pieceCoords[0], color);
-            }
-
-            // "Did the placed piece created any winning sequence(s)"
-            // Then print 'victory message' according to the placed 
-            // piece's color
-            if (board.CheckWin(pieceCoords))
-            {
-                if(color == Color.Yellow)
-                    //Yellow player won
-                    gameStage = GameStage.Yellow;
-
-                if (color == Color.Red)
-                    //Red player won
-                    gameStage = GameStage.Red;
-
-                Console.WriteLine(board.AnnounceWinner(gameStage));
-                
-                // THE MATCH MUST BE ENDED HERE
-            }
-
-            else
-            {
-                // "Is the board full?"
-                // Then announce that its a draw
-                if(board.CheckFull())
-                {
-                    gameStage = GameStage.Draw;
-                    Console.WriteLine(board.AnnounceWinner(gameStage));
                 }
             }
-
-            // Change the color to reflect the change of turn in the game
-            if (color == lastColor)
+            if (keyPressed)
             {
-                if (lastColor == Color.Yellow) color = Color.Red;
-                else color = Color.Yellow;
+                // "Is it possible to add a piece of color 'color' in the 
+                // column 'column'?"
+                if (board.TryAddingPiece(pieceCoords[0], color))
+                {
+                    // Add a piece of color 'color' in the column 'column', on 
+                    // the lowest free row
+                    pieceCoords[1] = board.AddPiece(pieceCoords[0], color);
+
+                    if (color == Color.Red) playersPixels[new Vector2(pieceCoords[0], pieceCoords[1])] = RedPlayerPixel;
+                    else playersPixels[new Vector2(pieceCoords[0], pieceCoords[1])] = YellowPlayerPixel;
+                    ChangePlayer();
+                }
+
+                // "Did the placed piece created any winning sequence(s)"
+                // Then print 'victory message' according to the placed 
+                // piece's color
+                if (board.CheckWin(pieceCoords))
+                {
+                    if (color == Color.Yellow)
+                        //Yellow player won
+                        gameStage = GameStage.Yellow;
+
+                    if (color == Color.Red)
+                        //Red player won
+                        gameStage = GameStage.Red;
+
+                    Console.WriteLine(board.AnnounceWinner(gameStage));
+
+                    // THE MATCH MUST BE ENDED HERE
+                }
             }
-            lastColor = color;
+            keyPressed = false;
+
+            // "Is the board full?"
+            // Then announce that its a draw
+            if(board.CheckFull())
+            {
+                gameStage = GameStage.Draw;
+                Console.WriteLine(board.AnnounceWinner(gameStage));
+            }
+        }
+
+        private void ChangePlayer()
+        {
+            if (color == Color.Yellow) color = Color.Red;
+
+            else if (color == Color.Red) color = Color.Yellow;
         }
     }
 }

@@ -17,8 +17,7 @@ namespace CoreGameEngine
         // Since a console sprite is a renderable component, it must implement
         // this property, which returns an ienumerable of position-pixel pairs
         // to render
-        public override
-        IEnumerable<KeyValuePair<Vector2, ConsolePixel>> Pixels => pixels;
+        public override IEnumerable<KeyValuePair<Vector2, ConsolePixel>> Pixels => pixels;  
 
         // The position-pixel pairs are actually kept here
         private IDictionary<Vector2, ConsolePixel> pixels;
