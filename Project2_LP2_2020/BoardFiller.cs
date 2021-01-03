@@ -38,8 +38,7 @@ namespace Project2_LP2_2020
         /// is free</returns>
         public bool CanAdd(int givenColumn)
         {
-            // Convert given number to account for array starting at '0'
-            int boardColumn = givenColumn -1;
+            int boardColumn = givenColumn;
 
 
             // If the highest space in the chosen column is free, return 'true'
@@ -64,7 +63,7 @@ namespace Project2_LP2_2020
 
             // Starting from the top of the board, descend through the rows 
             // of the column until an occupied space is found
-            while (currentRow < board.totRows - 1 &&
+            while (currentRow < board.totRows &&
                 board.boardArray[boardColumn, currentRow + 1] == Color.None)
             {
                 currentRow++;
