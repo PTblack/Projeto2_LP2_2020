@@ -42,7 +42,7 @@ namespace Project2_LP2_2020
         // ______________________________________________________________________
 
         /// <summary>
-        /// Checks if the top row of the board has any free space, indicating 
+        /// Checks if the top row of the board has any free space, indicating
         /// that the board is not completely full.
         /// </summary>
         /// <returns>Bool indicating if the board is full.</returns>
@@ -58,7 +58,7 @@ namespace Project2_LP2_2020
 
             return isFull;
         }
-        
+
         /// <summary>
         /// Search for sequences in the positive tangent diagonal.
         /// </summary>
@@ -95,10 +95,10 @@ namespace Project2_LP2_2020
                     if (checkX < board.TotColumns && checkY >= 0)
                     {
                         // "Is the space of the SAME color as the placedPiece?"
-                        if (board.BoardArray[checkX, checkY] == 
+                        if (board.BoardArray[checkX, checkY] ==
                             board.BoardArray[
-                            placedCoordinates[0], placedCoordinates[1]])                       
-                            sequenceCount++;                     
+                            placedCoordinates[0], placedCoordinates[1]])
+                            sequenceCount++;
                         else
                             noValidSpacePos = true;
                     }
@@ -143,7 +143,7 @@ namespace Project2_LP2_2020
         /// <summary>
         /// Search for sequences in the negative tangent diagonal.
         /// </summary>
-        /// <param name="placedCoordinates">The coordinates of the placed 
+        /// <param name="placedCoordinates">The coordinates of the placed
         /// piece.</param>
         /// <returns>Bool indicating if a winning sequence was found.</returns>
         public bool SearchWinSeqTanNeg(int[] placedCoordinates)
@@ -205,7 +205,7 @@ namespace Project2_LP2_2020
                         // "Is the space of the SAME color as the placedPiece?"
                         if (board.BoardArray[checkX, checkY] ==
                             board.BoardArray[
-                            placedCoordinates[0], placedCoordinates[1]])                     
+                            placedCoordinates[0], placedCoordinates[1]])
                             sequenceCount++;
                         else
                             noValidSpaceNeg = true;
@@ -224,7 +224,7 @@ namespace Project2_LP2_2020
         /// <summary>
         /// Search for sequences in the horizontal axis.
         /// </summary>
-        /// <param name="placedCoordinates">The coordinates of the placed 
+        /// <param name="placedCoordinates">The coordinates of the placed
         /// piece.</param>
         /// <returns>Bool indicating if a winning sequence was found.</returns>
         public bool SearchWinSeqHoriz(int[] placedCoordinates)
@@ -284,8 +284,8 @@ namespace Project2_LP2_2020
                         // "Is the space of the SAME color as the placedPiece?"
                         if (board.BoardArray[checkX, checkY] ==
                             board.BoardArray[
-                            placedCoordinates[0], placedCoordinates[1]])                     
-                            sequenceCount++;                    
+                            placedCoordinates[0], placedCoordinates[1]])
+                            sequenceCount++;
                         else
                             noValidSpaceNeg = true;
                     }
@@ -303,7 +303,7 @@ namespace Project2_LP2_2020
         /// <summary>
         /// Search for sequences in the vertical axis.
         /// </summary>
-        /// <param name="placedCoordinates">The coordinates of the placed 
+        /// <param name="placedCoordinates">The coordinates of the placed
         /// piece.</param>
         /// <returns>Bool indicating if a winning sequence was found.</returns>
         public bool SearchWinSeqVert(int[] placedCoordinates)
@@ -363,7 +363,7 @@ namespace Project2_LP2_2020
                         // "Is the space of the SAME color as the placedPiece?"
                         if (board.BoardArray[checkX, checkY] ==
                             board.BoardArray[
-                            placedCoordinates[0], placedCoordinates[1]])                      
+                            placedCoordinates[0], placedCoordinates[1]])
                             sequenceCount++;
                         else
                             noValidSpaceNeg = true;

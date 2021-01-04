@@ -11,7 +11,7 @@ namespace Project2_LP2_2020
     public static class UI
     {
         /// <summary>
-        /// 'Welcome' message with the general information 
+        /// 'Welcome' message with the general information
         /// (authors, references and game goal).
         /// </summary>
         public static void Welcome()
@@ -56,19 +56,20 @@ namespace Project2_LP2_2020
                         Environment.Exit(0);
                         break;
                 }
-            }      
+            }
         }
 
         /// <summary>
-        /// Sends message announcing the end of the match, stating what end 
+        /// Sends message announcing the end of the match, stating what end
         /// condition was met.
         /// </summary>
-        /// <param name="gameStage">parameter that allows method to identify 
+        /// <param name="gameStage">parameter that allows method to identify
         /// the end condition that made this method be called.</param>
-        /// <returns>string.</returns>
+        /// <returns>String announcing the winner of the match.</returns>
         public static string AnnounceWinner(GameStage gameStage)
         {
             string announceState = "Match is Over";
+
             switch (gameStage)
             {
                 case GameStage.Draw:
@@ -91,7 +92,8 @@ namespace Project2_LP2_2020
         /// Tells the player to choose one column of the board to place a piece.
         /// </summary>
         /// <param name="color">Color identifying the current player.</param>
-        /// <param name="animation">Boolean used to cycle between waiting string.</param>
+        /// <param name="animation">Boolean used to cycle between waiting
+        /// string.</param>
         public static void ColumnOptions(Color color, bool animation)
         {
             if (color == Color.Red)

@@ -10,7 +10,7 @@ namespace Project2_LP2_2020
     public static class ExceptionManager
     {
         /// <summary>
-        /// Method that sends an error message detailing the incident that 
+        /// Method that sends an error message detailing the incident that
         /// happened.
         /// </summary>
         /// <param name="errorCodes">Variable identifying the error.</param>

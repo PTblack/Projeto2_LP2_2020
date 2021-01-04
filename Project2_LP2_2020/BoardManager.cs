@@ -8,10 +8,10 @@ namespace Project2_LP2_2020
         private readonly Board board;
         private readonly BoardFiller boardFiller;
         private readonly BoardSearcher boardSearcher;
-        
+
         /// <summary>
-        /// Constructor creates an instance of the 'Board' class and shares 
-        /// its reference with the classes 'BoardFiller' and 'BoardSearcher' 
+        /// Constructor creates an instance of the 'Board' class and shares
+        /// its reference with the classes 'BoardFiller' and 'BoardSearcher'
         /// so that they are all working with the same board.
         /// </summary>
         public BoardManager()
@@ -30,7 +30,7 @@ namespace Project2_LP2_2020
         public bool TryAddingPiece(int givenColumn)
         {
             bool canAdd = false;
-            if (boardFiller.CanAdd(givenColumn)) 
+            if (boardFiller.CanAdd(givenColumn))
                 canAdd = true;
             return canAdd;
         }
@@ -63,8 +63,8 @@ namespace Project2_LP2_2020
                 boardSearcher.SearchWinSeqHoriz(pieceCoordinates) ||
                 boardSearcher.SearchWinSeqVert(pieceCoordinates))
                 return true;
-            else 
-                return false;
+
+            return false;
         }
 
         /// <summary>
@@ -73,8 +73,7 @@ namespace Project2_LP2_2020
         /// <returns>Bool indicating if the board is full.</returns>
         public bool CheckFull()
         {
-            bool isFull = false;
-            isFull = boardSearcher.BoardFull();
+            bool isFull = boardSearcher.BoardFull();
 
             return isFull;
         }
@@ -82,7 +81,7 @@ namespace Project2_LP2_2020
         /// <summary>
         /// Accesses the Board class' ToString() method.
         /// </summary>
-        /// <returns>String returned by the Board class' ToString() 
+        /// <returns>String returned by the Board class' ToString()
         /// method.</returns>
         public string GetBoardString()
         {

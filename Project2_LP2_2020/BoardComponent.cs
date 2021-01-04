@@ -24,7 +24,7 @@ namespace Project2_LP2_2020
         /// <summary>
         /// Gets the pixels of all positions into the IEnumerable.
         /// </summary>
-        public override IEnumerable<KeyValuePair<Vector2, ConsolePixel>> 
+        public override IEnumerable<KeyValuePair<Vector2, ConsolePixel>>
             Pixels => playersPixels;
 
         /// <summary>
@@ -43,12 +43,12 @@ namespace Project2_LP2_2020
             playersPixels = new Dictionary<Vector2, ConsolePixel>();
 
             ConsolePixel defaultPixel = new ConsolePixel(
-               '.', ConsoleColor.White, ConsoleColor.DarkGray);
+                '.', ConsoleColor.White, ConsoleColor.DarkGray);
 
             redPlayerPixel = new ConsolePixel(
-               'R', ConsoleColor.White, ConsoleColor.DarkRed);
+                'R', ConsoleColor.White, ConsoleColor.DarkRed);
             yellowPlayerPixel = new ConsolePixel(
-              'Y', ConsoleColor.White, ConsoleColor.DarkYellow);
+                'Y', ConsoleColor.White, ConsoleColor.DarkYellow);
 
             for (int x = 0; x < 7; x++)
             {
@@ -124,7 +124,7 @@ namespace Project2_LP2_2020
 
                     if (color == Color.Red)
                         playersPixels[new Vector2(pieceCoords[0], pieceCoords[1])] = redPlayerPixel;
-                    else 
+                    else
                         playersPixels[new Vector2(pieceCoords[0], pieceCoords[1])] = yellowPlayerPixel;
 
                     // "Did the placed piece created any winning sequence(s)"
