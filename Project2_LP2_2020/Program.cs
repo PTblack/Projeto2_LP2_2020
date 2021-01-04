@@ -7,7 +7,7 @@ namespace Project2_LP2_2020
 {
     class Program
     {// World dimensions
-        int xdim = 100, ydim = 20;
+        int xdim = 10, ydim = 8;
 
         // Frame duration in miliseconds
         int frameLength = 100;

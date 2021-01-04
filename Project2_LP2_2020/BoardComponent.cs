@@ -111,6 +111,7 @@ namespace Project2_LP2_2020
                     // piece's color
                     if (board.CheckWin(pieceCoords))
                     {
+                        ChangePlayer();
                         if (color == Color.Yellow)
                             //Yellow player won
                             gameStage = GameStage.Yellow;
