@@ -93,8 +93,6 @@ namespace Project2_LP2_2020
             // Fill the lowest free space found in the column
             board.boardArray[boardColumn, currentRow] = color;
 
-            Console.WriteLine(board.boardArray[boardColumn, currentRow]);
-
             return currentRow;
         }
     }

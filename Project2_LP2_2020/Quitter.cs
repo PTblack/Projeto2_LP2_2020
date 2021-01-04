@@ -8,10 +8,12 @@ namespace Project2_LP2_2020
     class Quitter : Component
     {
         private KeyObserver keyObserver;
+
         public override void Start()
         {
             keyObserver = ParentGameObject.GetComponent<KeyObserver>();
         }
+
         public override void Update()
         {
             foreach (ConsoleKey key in keyObserver.GetCurrentKeys())

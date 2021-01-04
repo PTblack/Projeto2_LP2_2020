@@ -30,9 +30,6 @@ namespace CoreGameEngine
         // Is the scene terminated?
         private bool terminate;
 
-        // Is the scene paused?
-        public bool paused;
-
         // Renderer for this scene
         private ConsoleRenderer renderer;
 
@@ -46,7 +43,6 @@ namespace CoreGameEngine
             this.renderer = renderer;
             this.collisionHandler = collisionHandler;
             terminate = false;
-            paused = false;
             gameObjects = new Dictionary<string, GameObject>();
         }
 
@@ -103,7 +99,7 @@ namespace CoreGameEngine
                 collisionHandler.Update(gameObjects.Values);
 
                 // Render current frame
-                if(!paused) renderer?.Render(gameObjects.Values);
+                renderer?.Render(gameObjects.Values);
 
                 // Time to wait until next frame
                 timeToWait = (int)(start / TimeSpan.TicksPerMillisecond
