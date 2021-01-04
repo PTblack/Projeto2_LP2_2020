@@ -25,6 +25,7 @@ namespace Project2_LP2_2020
         {
             board = new BoardManager();
             keyObserver = ParentGameObject.GetComponent<KeyObserver>();
+            // Yellow plays first
             color = Color.Yellow;
             animation = false;
 
@@ -50,7 +51,8 @@ namespace Project2_LP2_2020
         public override void Update()
         {
             animation = !animation;
-            // Coordinates for the placed piece 
+
+            // Default coordinates for the placed piece 
             // [0] = column (x) / [1] = row (y)
             int[] pieceCoords = {0,0};
             if (!ParentScene.paused)
@@ -144,7 +146,6 @@ namespace Project2_LP2_2020
         private void ChangePlayer()
         {
             if (color == Color.Yellow) color = Color.Red;
-
             else if (color == Color.Red) color = Color.Yellow;
         }
     }

@@ -31,16 +31,22 @@ partes do mesmo*
 
 ## Arquitetura da Solução
 
-### Classes
+### Descrição da Solução
 
-`class` **Program**
+patterns usados: 
+- doublebuffer - Usamos o double buffer pattern que faz com que o buffer seja atualizado incrementalmente, desta forma a classe `DoubleBuffer`tem dois buffers um buffer atual e outro que esta a desenhar a próxima frame, quando esta estiver pronta ambos os bufferstrocam de posição.
+- facade - Esconde toda a complexidade de boardManager através das classes BoardFiller e BoardSearcher
+- component - Permite game object obter os seus compontentes interagindo com uma classe component, que interage com várias classes component
+- observer - Regista uma série de inputs e notifica...
+- principle of least knowldge -...
 
+#### Board
 _Recieves input and controls flow of program (Calls **UI** and **BoardManager** 
 methods), has the GameLoop._
 
 - Has instances of **UI** and **BoardManager** classes
 
-`class` **BoardManager**
+#### BoardComponent
 
 _Gets pieces to place in board and checks for main game events (Victory/Tie)_
 
@@ -48,36 +54,41 @@ _Gets pieces to place in board and checks for main game events (Victory/Tie)_
 
 - Façade for **BoardFiller** and **BoardSearcher** (to be used in **Program**)
 
-`class` **BoardFiller**
+#### BoardFiller
 
 _Places pieces in board_
 
 - Has instance of **Board**
 
-`class` **BoardSearcher**
+#### BoardManager
 
 _Searches board for sequence_
 
 - Has instance of **Board**
 
-`class` **UI**
+#### BoardSearcher
 
 _Prints information and shows Menus_
 
-`class` `static` **ExceptionManager**
+#### ExceptionManager
+
+#### GameStage
+
+#### Quitter
+
+#### UI
+
+#### UIComponent
 
 _Handles exceptions_
 
 ---
 
-### Structs
+### Enums
 
-`struct` **Board** (deve ser uma struct?)
+#### Color
 
-_Saves board dimensions and status of board spaces (Empty, Cross, Circle)_
-
-- The board itself is a bi-dimensional array that holds chars with either "E" 
-  (empty), "Y" (yellow) or "R" (red)
+#### Error Codes
 
 ---
 
