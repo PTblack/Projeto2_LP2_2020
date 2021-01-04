@@ -95,7 +95,7 @@ namespace Project2_LP2_2020
                 {
                     // "Is it possible to add a piece of color 'color' in the 
                     // column 'column'?"
-                    if (board.TryAddingPiece(pieceCoords[0], color))
+                    if (board.TryAddingPiece(pieceCoords[0]))
                     {
                         // Add a piece of color 'color' in the column 'column', on 
                         // the lowest free row
