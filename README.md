@@ -14,7 +14,7 @@ início até à sua entrega_
 1. O que cada membro fez
     * Diogo Henriques:
 
-            Responsável pelas classes Engine, Input, e pelo UML e o Doxyfile.
+            Responsável pelo funcionamento da Engine e pelo UML e o Doxyfile.
             Envolvido na junção e adaptação do Engine utilizado com o jogo
             desenvolvido, e no Markdown.
 
