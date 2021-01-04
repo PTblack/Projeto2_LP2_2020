@@ -7,6 +7,7 @@
 using System;
 using System.Threading;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace CoreGameEngine
 {
@@ -45,7 +46,7 @@ namespace CoreGameEngine
             this.renderer = renderer;
             this.collisionHandler = collisionHandler;
             terminate = false;
-            terminate = false;
+            paused = false;
             gameObjects = new Dictionary<string, GameObject>();
         }
 

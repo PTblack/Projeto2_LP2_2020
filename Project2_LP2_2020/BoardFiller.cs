@@ -40,7 +40,6 @@ namespace Project2_LP2_2020
         {
             int boardColumn = givenColumn;
 
-
             // If the highest space in the chosen column is free, return 'true'
             if (board.boardArray[boardColumn, 0] == Color.None) return true;
             else return false;
@@ -54,9 +53,9 @@ namespace Project2_LP2_2020
         /// <param name="color">The color of the piece/param>
         /// <returns>Int with 'y' position of the placed piece in the 
         /// boardArray</returns>
-        public int Add(int givenColumn, Color color)
+        /*public int Add(int givenColumn, Color color)
         {
-            int boardColumn = givenColumn;
+            int boardColumn = givenColumn -1;
 
             // Loop starts at the top where the only garanteed free space is
             int currentRow = 0;
@@ -66,11 +65,35 @@ namespace Project2_LP2_2020
             while (currentRow < board.totRows &&
                 board.boardArray[boardColumn, currentRow + 1] == Color.None)
             {
+
                 currentRow++;
             }
 
             // Fill the lowest free space found in the column
             board.boardArray[boardColumn, currentRow] = color;
+
+            return currentRow;
+        }*/
+        
+        public int Add(int givenColumn, Color color)
+        {
+            int boardColumn = givenColumn;
+
+            // Loop starts at the top where the only garanteed free space is
+            int currentRow = 0;
+
+            // Starting from the top of the board, descend through the rows 
+            // of the column until an occupied space is found
+            while (currentRow <= board.totRows - 2 && 
+                board.boardArray[boardColumn, currentRow + 1] == Color.None)
+            {        
+                currentRow++;
+            }
+
+            // Fill the lowest free space found in the column
+            board.boardArray[boardColumn, currentRow] = color;
+
+            Console.WriteLine(board.boardArray[boardColumn, currentRow]);
 
             return currentRow;
         }

@@ -18,7 +18,7 @@ namespace Project2_LP2_2020
             {
                 if (key == ConsoleKey.Escape)
                 {
-                    Console.WriteLine("Bye :(");
+                    Console.WriteLine(" Bye :(");
                     ParentScene.Terminate();
                 }
             }
