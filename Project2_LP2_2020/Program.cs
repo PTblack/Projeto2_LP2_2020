@@ -7,10 +7,10 @@ namespace Project2_LP2_2020
 {
     class Program
     {// World dimensions
-        int xdim = 10, ydim = 8;
+        int xdim = 9, ydim = 8;
 
         // Frame duration in miliseconds
-        int frameLength = 100;
+        int frameLength = 20;
 
         // The (only) game scene
         private Scene gameScene;

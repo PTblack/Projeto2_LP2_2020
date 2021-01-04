@@ -46,7 +46,7 @@ namespace CoreGameEngine
             this.renderer = renderer;
             this.collisionHandler = collisionHandler;
             terminate = false;
-            terminate = false;
+            paused = false;
             gameObjects = new Dictionary<string, GameObject>();
         }
 
