@@ -104,7 +104,7 @@ início até à sua entrega_
 
 ### Diagrama UML
 
-![Diagrama UML](/images/uml.png)
+![Diagrama UML](/images/UML.png)
 
 ---
 
