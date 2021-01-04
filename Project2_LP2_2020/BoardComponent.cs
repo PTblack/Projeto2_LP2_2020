@@ -5,7 +5,8 @@ using CoreGameEngine;
 namespace Project2_LP2_2020
 {
     /// <summary>
-    /// 
+    /// Where the functioning of the board is defined. Adding pieces, announcing
+    /// if a player as won, if its a draw and changing the current turn.
     /// </summary>
     public class BoardComponent : RenderableComponent
     {
@@ -21,13 +22,14 @@ namespace Project2_LP2_2020
         private Dictionary<Vector2, ConsolePixel> playersPixels;
 
         /// <summary>
-        /// Gets
+        /// Gets the pixels of all positions into the IEnumerable.
         /// </summary>
         public override IEnumerable<KeyValuePair<Vector2, ConsolePixel>> 
             Pixels => playersPixels;
 
         /// <summary>
-        /// 
+        /// Initializes the ConsolePixel variables to show the color of the
+        /// respective player's pieces, or an empty space.
         /// </summary>
         public override void Start()
         {
@@ -58,7 +60,9 @@ namespace Project2_LP2_2020
         }
 
         /// <summary>
-        /// 
+        /// Updates the game board according to the player's actions and
+        /// evaluates the current state of the game board to announce winners
+        /// or draws.
         /// </summary>
         public override void Update()
         {

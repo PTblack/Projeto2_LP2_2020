@@ -4,7 +4,8 @@ using System.ComponentModel;
 namespace Project2_LP2_2020
 {
     /// <summary>
-    /// 
+    /// Class with methods to handle exceptions, giving the appropriate
+    /// error message.
     /// </summary>
     public static class ExceptionManager
     {
@@ -24,6 +25,7 @@ namespace Project2_LP2_2020
                         "The requested column is either non-existant " +
                         "or is completely full.\n");
                     break;
+
                 default:
                     break;
             }

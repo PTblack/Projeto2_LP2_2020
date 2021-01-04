@@ -39,9 +39,9 @@ namespace Project2_LP2_2020
         ///  Places piece in the lowest row of the chosen column and returns
         /// the row of the placed piece.
         /// </summary>
-        /// <param name="givenColumn"></param>
-        /// <param name="playerColor"></param>
-        /// <returns>int.</returns>
+        /// <param name="givenColumn">Column chosen by player.</param>
+        /// <param name="playerColor">Color of the player.</param>
+        /// <returns>Integer identifying the placed piece's row.</returns>
         public int AddPiece(int givenColumn, Color playerColor)
         {
             return boardFiller.Add(givenColumn, playerColor);

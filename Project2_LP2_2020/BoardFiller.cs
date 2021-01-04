@@ -3,16 +3,18 @@ using System;
 namespace Project2_LP2_2020
 {
     /// <summary>
-    /// 
+    /// Class tasked with adding pieces to the board and checking if the
+    /// board's column is available (not full).
     /// </summary>
     public class BoardFiller 
     {
         private readonly Board board;
 
         /// <summary>
-        /// 
+        /// Saves the same board reference as the BoardManager and
+        /// BoardSearcher.
         /// </summary>
-        /// <param name="board"></param>
+        /// <param name="board">Reference to the board.</param>
         public BoardFiller(Board board)
         {
             this.board = board;
@@ -55,9 +57,9 @@ namespace Project2_LP2_2020
         /// Places piece in the lowest row of the chosen column and returns
         /// the row of the placed piece.
         /// </summary>
-        /// <param name="givenColumn"></param>
-        /// <param name="color"></param>
-        /// <returns>int.</returns>
+        /// <param name="givenColumn">Column chosen by the player.</param>
+        /// <param name="color">Color of the piece.</param>
+        /// <returns>Integer with the placed piece's row.</returns>
         public int Add(int givenColumn, Color color)
         {
             int boardColumn = givenColumn;

@@ -6,7 +6,7 @@ using static System.Console;
 namespace Project2_LP2_2020
 {
     /// <summary>
-    /// 
+    /// Class that contains text to be printed by the program.
     /// </summary>
     public static class UI
     {

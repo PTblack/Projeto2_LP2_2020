@@ -3,7 +3,8 @@ using System;
 namespace Project2_LP2_2020
 {
     /// <summary>
-    /// 
+    /// Class containing the methods that verify if the board is full and that
+    /// search for a winning sequence on the board.
     /// </summary>
     public class BoardSearcher
     {
@@ -13,9 +14,10 @@ namespace Project2_LP2_2020
         private int distance;
 
         /// <summary>
-        /// 
+        /// Saves the same board reference as the BoardManager and
+        /// BoardFiller.
         /// </summary>
-        /// <param name="board"></param>
+        /// <param name="board">Reference to the board.</param>
         public BoardSearcher(Board board)
         {
             this.board = board;
@@ -60,7 +62,7 @@ namespace Project2_LP2_2020
         /// <summary>
         /// Search for sequences in the positive tangent diagonal.
         /// </summary>
-        /// <param name="placedCoordinates">The coordinates of the placed 
+        /// <param name="placedCoordinates">The coordinates of the placed
         /// piece.</param>
         /// <returns>Bool indicating if a winning sequence was found.</returns>
         public bool SearchWinSeqTanPlus(int[] placedCoordinates)
