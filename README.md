@@ -100,7 +100,33 @@ início até à sua entrega_
 
 #### Rendering
 
-* DIAS E DIOGO VOCÊS TÊM DE ESCREVER AQUI!!!!!!!!!!!!!!!!!!!
+* A Engine faz uso do _DoubleBuffer Pattern_ que tem como objetivo separar a
+  renderização dos pixeis na tela em dois buffers, um que contém o frame atual
+  que está no ecrã e outro que está a desenhar o próximo frame, quando o próximo
+  frame estiver desenhado os buffers trocam de posição. Isto faz com que a
+  atualização de frame na tela seja instantânea, reduzindo o tearing no ecrã.
+
+#### Scene
+
+* A Scene prepara os GameObjects e o GameLoop para o jogo. Os GameObjects são
+  contentores de components que são usados para fazer e adicionar as
+  funcionalidades pretendidas aos objetos, como a _board_, o _quitter_ e as
+  _walls_, isto é feito através do _Component Pattern_, que faz com que apenas
+  uma classe intereja com os futuros game objects, neste caso é as classes que
+  extendem `Componet`. O GameLoop separa o funcionamento dos inputs do
+  processamento do jogo, o que previne a paragem do jogo sempre que é pedido um
+  input do jogador. Isto é feito através de duas threads, uma thread para inputs
+  e uma thread para o GameLoop, o que permite ambas as tarefas serem executadas
+  ao mesmo tempo.
+
+#### Input
+
+* O sistema de inputs do jogo utiliza o _Observer Pattern_ e é feito através das
+  classes `InputHandler`, `KeyObserver` e das interfaces `IObservable` e
+  `IObserver`. A classe `InputHandler` implementa `IObservable` e trata de
+  registar os objetos que vão ser notificados pelas teclas que queremos. A
+  classe `KeyObserver` extende de `Component` e implementa `IObserver` e esta é
+  a classe component, que é chamda quando uma tecla observada é pressionada.
 
 ### Diagrama UML
 
