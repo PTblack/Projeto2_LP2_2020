@@ -1,5 +1,6 @@
 using CoreGameEngine;
 using System;
+using System.Runtime.CompilerServices;
 using static System.Console;
 
 namespace Project2_LP2_2020
@@ -43,7 +44,7 @@ namespace Project2_LP2_2020
                 switch (readKey)
                 {
                     case "h":
-                        UI.Help();
+                        Console.Write(UI.Help());
                         break;
                     case "q":
                         choosing = false;
@@ -63,7 +64,10 @@ namespace Project2_LP2_2020
         {
             if (!scene.paused)
             {
+                if (color == Color.Red) ForegroundColor = ConsoleColor.Red;
+                else ForegroundColor = ConsoleColor.Yellow;
                 BackgroundColor = ConsoleColor.Black;
+
                 Console.WriteLine("\n{0} player, it's your turn!    \n", color);
 
                 Console.WriteLine("Choose the column for your piece.");
@@ -81,32 +85,32 @@ namespace Project2_LP2_2020
         /// 'Help' text with instructions on how to play and how the 
         /// program works
         /// </summary>
-        public static void Help()
+        public static string Help()
         {
-            Console.WriteLine("---CHOOSING A PLAY---\n");
+            return "\n--CHOOSING A PLAY---\n" +
 
-            Console.WriteLine("Each turn, the player of the corresponding " +
-            "piece must pick a number equivalent to a column of the board.\n");
+            "Each turn, the player of the corresponding " +
+            "piece must pick a number equivalent to a column of the board.\n" +
 
-            Console.WriteLine("The program will warn the user if the number " +
+            "The program will warn the user if the number " +
             "given is invalid, whether if it does not equate to any column " +
-            "of the board, or if the specified column is completely full.");
-            Console.WriteLine("(it will also issue a warning if the number " +
-            "given is not a number at all)");
+            "of the board, or if the specified column is completely full.\n" +
+            "(it will also issue a warning if the number " +
+            "given is not a number at all)\n" +
 
-            Console.WriteLine("\nAfter issuing this warning, it will give " +
-            "the player the chance to select a column again");
+            "\nAfter issuing this warning, it will give " +
+            "the player the chance to select a column again\n" +
 
-            Console.WriteLine("---ANNOUNCING THE END OF A MATCH---\n");
+            "---ANNOUNCING THE END OF A MATCH---\n\n" +
 
-            Console.WriteLine("When an match-ending condition is met, a " +
-            "message will appear signaling what it was, it can be a:");
-            Console.WriteLine("\t1) TIE (all spaces of the board are " +
-            "occupied and no winning sequence exists)"); 
-            Console.WriteLine("\t2) VICTORY for YELLOW" +
-            "(they made a yellow 4-piece sequence)");
-            Console.WriteLine("\t3) VICTORY for RED" +
-            "(they made a red 4-piece sequence)");
+            "When an match-ending condition is met, a " +
+            "message will appear signaling what it was, it can be a:\n" +
+            "\t1) TIE (all spaces of the board are " +
+            "occupied and no winning sequence exists)\n" +
+            "\t2) VICTORY for YELLOW" +
+            "(they made a yellow 4-piece sequence)\n" +
+            "\t3) VICTORY for RED" +
+            "(they made a red 4-piece sequence)";
         }
     }
 }

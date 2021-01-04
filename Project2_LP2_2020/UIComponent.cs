@@ -4,20 +4,26 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using CoreGameEngine;
+using System.Linq;
 
 namespace Project2_LP2_2020
 {
-    public class UIComponent : Component
+    public class UIComponent : RenderableComponent
     {
         private Color color;
-        private Color lastColor;
+        private ConsoleSprite renderString;
         private KeyObserver keyObserver;
+        private Vector2 helpPos;
+        private IEnumerable<KeyValuePair<Vector2, ConsolePixel>> uiPixels;
+
+       public override IEnumerable<KeyValuePair<Vector2, ConsolePixel>> Pixels => renderString.Pixels; 
 
         public override void Start()
         {
+            uiPixels = new List<KeyValuePair<Vector2, ConsolePixel>>();
             keyObserver = ParentGameObject.GetComponent<KeyObserver>();
             color = Color.Yellow;
-            lastColor = Color.None;
+            helpPos = new Vector2(0,0);
         }
         public override void Update()
         {
@@ -26,24 +32,40 @@ namespace Project2_LP2_2020
                 switch (key)
                 {
                     case ConsoleKey.H:
-                        if(ParentScene.paused) ParentScene.paused = false;
+                        if (ParentScene.paused)
+                        {
+                            ParentScene.paused = false;
+                            break;
+                        }
                         else
                         {
                             ParentScene.paused = true;
-                            UI.Help();
-                        }                       
+                            /*help = UI.Help().ToCharArray();
+                            Console.WriteLine(help);
+                            uiPixels[new Vector2(6, 7)] = new ConsolePixel();*/
+                        }
                         break;
                     case ConsoleKey.Q:
                         break;
                 }
-            }
+            }          
+          // renderString = new ConsoleSprite(ConvertToChar(str), ConsoleColor.White, ConsoleColor.Red);         
+        }
+        private char[,] ConvertToChar(string[] str)
+        {
+            char[,] chr = new char[str.Length,100];
 
-            if (color == lastColor)
+            for (int i = 0; i < str.Length; i++)
             {
-                if (lastColor == Color.Yellow) color = Color.Red;
-                else color = Color.Yellow;
+                char[] ch =  new char[str[i].Length];
+
+                for (int j = 0; j < str[i].Length; j++)
+                {
+
+                    chr[i, j] = ch[j];
+                }
             }
-            lastColor = color;
+            return chr;
         }
     }
 }

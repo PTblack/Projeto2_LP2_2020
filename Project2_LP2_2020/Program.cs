@@ -7,7 +7,7 @@ namespace Project2_LP2_2020
 {
     class Program
     {// World dimensions
-        int xdim = 9, ydim = 8;
+        int xdim = 100, ydim = 20;
 
         // Frame duration in miliseconds
         int frameLength = 100;
@@ -20,8 +20,10 @@ namespace Project2_LP2_2020
         {
             // Create a new small game and run it
             Program Connect4 = new Program();
+            //show Menu
             UI.Welcome();
             UI.Options();
+            //run game
             Connect4.Run();
         }
 
@@ -31,7 +33,7 @@ namespace Project2_LP2_2020
             ConsoleKey[] quitKeys = new ConsoleKey[] { ConsoleKey.Escape };
             gameScene = new Scene(xdim, ydim,
                 new InputHandler(quitKeys),
-                new ConsoleRenderer(xdim, ydim, new ConsolePixel('.')),
+                new ConsoleRenderer(xdim, ydim, new ConsolePixel(' ')),
                 new CollisionHandler(xdim, ydim));
 
             // Create quitter object
@@ -42,17 +44,9 @@ namespace Project2_LP2_2020
             quitter.AddComponent(new Quitter());
             gameScene.AddGameObject(quitter);
 
-            // Create Menu object
-            GameObject menu = new GameObject("Menu");
-            KeyObserver menuListener = new KeyObserver(new ConsoleKey[]
-                { ConsoleKey.H, ConsoleKey.Q });
-            menu.AddComponent(menuListener);
-            menu.AddComponent(new UIComponent());
-            gameScene.AddGameObject(menu);
-
-            // Create player object         
-            GameObject player = new GameObject("Player");
-            KeyObserver playerKeyListener = new KeyObserver(new ConsoleKey[] {
+            // Create board object         
+            GameObject board = new GameObject("Board");
+            KeyObserver boardKeyListener = new KeyObserver(new ConsoleKey[] {
                 ConsoleKey.D1,
                 ConsoleKey.D2,
                 ConsoleKey.D3,
@@ -60,36 +54,26 @@ namespace Project2_LP2_2020
                 ConsoleKey.D5,
                 ConsoleKey.D6,
                 ConsoleKey.D7});
-            player.AddComponent(playerKeyListener);
-            player.AddComponent(new BoardComponent());
-            player.AddComponent(new Position());
-            gameScene.AddGameObject(player);
+            board.AddComponent(boardKeyListener);
+            board.AddComponent(new BoardComponent());
+            board.AddComponent(new Position(1f,0f,0f));
+            gameScene.AddGameObject(board);
 
             // Create walls
             GameObject walls = new GameObject("Walls");
             ConsolePixel wallPixel = new ConsolePixel(
-                '#', ConsoleColor.White, ConsoleColor.DarkCyan);
+                '*', ConsoleColor.White, ConsoleColor.DarkCyan);
             Dictionary<Vector2, ConsolePixel> wallPixels =
                 new Dictionary<Vector2, ConsolePixel>();
-            for (int x = 0; x < xdim; x++)
-                wallPixels[new Vector2(x, ydim - 1)] = wallPixel;
-            for (int y = 0; y < ydim; y++)
+            for (int x = 0; x < 9; x++)
+                wallPixels[new Vector2(x, 7 - 1)] = wallPixel;
+            for (int y = 0; y < 7; y++)
                 wallPixels[new Vector2(0, y)] = wallPixel;
-            for (int y = 0; y < ydim; y++)
-                wallPixels[new Vector2(xdim - 1, y)] = wallPixel;
+            for (int y = 0; y < 7; y++)
+                wallPixels[new Vector2(9 - 1, y)] = wallPixel;
             walls.AddComponent(new ConsoleSprite(wallPixels));
             walls.AddComponent(new Position(0, 0, 1));
             gameScene.AddGameObject(walls);
-
-           /* // Create game object for showing date and time
-            GameObject dtGameObj = new GameObject("Time");
-            dtGameObj.AddComponent(new Position(xdim / 2 + 1, 0, 10));
-            RenderableStringComponent rscDT = new RenderableStringComponent(
-                () => DateTime.Now.ToString("F"),
-                i => new Vector2(i, 0),
-                ConsoleColor.DarkMagenta, ConsoleColor.White);
-            dtGameObj.AddComponent(rscDT);
-            gameScene.AddGameObject(dtGameObj);*/
         }
 
         private void Run()

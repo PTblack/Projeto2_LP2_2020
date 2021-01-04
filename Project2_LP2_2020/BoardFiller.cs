@@ -40,7 +40,6 @@ namespace Project2_LP2_2020
         {
             // Convert given number to account for array starting at '0'
             int boardColumn = givenColumn -1;
-            Console.WriteLine(boardColumn);
 
             // If the highest space in the chosen column is free, return 'true'
             if (board.boardArray[boardColumn, 0] == Color.None) return true;
@@ -68,6 +67,7 @@ namespace Project2_LP2_2020
             while (currentRow < board.totRows - 1 &&
                 board.boardArray[boardColumn, currentRow + 1] == Color.None)
             {
+
                 currentRow++;
             }
 
@@ -76,5 +76,32 @@ namespace Project2_LP2_2020
 
             return currentRow;
         }
+        /*
+        public int Add(int givenColumn, Color color)
+        {
+            int boardColumn = givenColumn;
+
+            // Loop starts at the top where the only garanteed free space is
+            int currentRow = 0;
+
+            // Starting from the top of the board, descend through the rows 
+            // of the column until an occupied space is found
+            while (currentRow <= board.totRows - 2)
+            {
+                if (board.boardArray[boardColumn, currentRow + 1] == Color.None)
+                {
+                    Console.WriteLine(boardColumn + " " + currentRow);
+                    currentRow++;
+                    Console.WriteLine(boardColumn + " " + currentRow);
+                }
+            }
+
+            // Fill the lowest free space found in the column
+            board.boardArray[boardColumn, currentRow] = color;
+
+            Console.WriteLine(board.boardArray[boardColumn, currentRow]);
+
+            return currentRow;
+        }*/
     }
 }

@@ -15,13 +15,11 @@ namespace Project2_LP2_2020
 
         private GameStage gameStage;
         private bool animation, keyPressed;
-        ConsolePixel RedPlayerPixel, YellowPlayerPixel;
-        Dictionary<Vector2, ConsolePixel> playersPixels;
+        private ConsolePixel defaultPixel, redPlayerPixel, yellowPlayerPixel;
+        private Dictionary<Vector2, ConsolePixel> playersPixels;
 
-        public override IEnumerable<KeyValuePair<Vector2, ConsolePixel>> Pixels
-        {
-            get => playersPixels;
-        }
+        public override IEnumerable<KeyValuePair<Vector2, ConsolePixel>> 
+            Pixels => playersPixels;
 
         public override void Start()
         {
@@ -32,10 +30,21 @@ namespace Project2_LP2_2020
 
             playersPixels = new Dictionary<Vector2, ConsolePixel>();
 
-            RedPlayerPixel = new ConsolePixel(
-               'R', ConsoleColor.Red, ConsoleColor.DarkCyan);
-            YellowPlayerPixel = new ConsolePixel(
-              'Y', ConsoleColor.Yellow, ConsoleColor.DarkCyan);
+            defaultPixel = new ConsolePixel(
+               '.', ConsoleColor.White, ConsoleColor.DarkGray);
+
+            redPlayerPixel = new ConsolePixel(
+               'R', ConsoleColor.White, ConsoleColor.DarkRed);
+            yellowPlayerPixel = new ConsolePixel(
+              'Y', ConsoleColor.White, ConsoleColor.DarkYellow);
+
+            for (int x = 0; x < 7; x++)
+            {
+                for (int y = 0; y < 6; y++)
+                {
+                    playersPixels[new Vector2(x, y)] = defaultPixel;
+                }
+            }
         }
 
         public override void Update()
@@ -44,84 +53,90 @@ namespace Project2_LP2_2020
             // Coordinates for the placed piece 
             // [0] = column (x) / [1] = row (y)
             int[] pieceCoords = {0,0};
-
-            // Print game board
-            UI.ColumnOptions(color, ParentScene, animation);
-            foreach (ConsoleKey key in keyObserver.GetCurrentKeys())
+            if (!ParentScene.paused)
             {
-                switch (key)
+                // Print game board
+                UI.ColumnOptions(color, ParentScene, animation);
+                foreach (ConsoleKey key in keyObserver.GetCurrentKeys())
                 {
-                    case ConsoleKey.D1:
-                        pieceCoords[0] = 1;
-                        keyPressed = true;
-                        break;
-                    case ConsoleKey.D2:
-                        pieceCoords[0] = 2;
-                        keyPressed = true;
-                        break;
-                    case ConsoleKey.D3:
-                        pieceCoords[0] = 3;
-                        keyPressed = true;
-                        break;
-                    case ConsoleKey.D4:
-                        pieceCoords[0] = 4;
-                        keyPressed = true;
-                        break;
-                    case ConsoleKey.D5:
-                        pieceCoords[0] = 5;
-                        keyPressed = true;
-                        break;
-                    case ConsoleKey.D6:
-                        pieceCoords[0] = 6;
-                        keyPressed = true;
-                        break;
-                    case ConsoleKey.D7:
-                        pieceCoords[0] = 7;
-                        keyPressed = true;
-                        break;
+                    switch (key)
+                    {
+                        case ConsoleKey.D1:
+                            pieceCoords[0] = 1;
+                            keyPressed = true;
+                            break;
+                        case ConsoleKey.D2:
+                            pieceCoords[0] = 2;
+                            keyPressed = true;
+                            break;
+                        case ConsoleKey.D3:
+                            pieceCoords[0] = 3;
+                            keyPressed = true;
+                            break;
+                        case ConsoleKey.D4:
+                            pieceCoords[0] = 4;
+                            keyPressed = true;
+                            break;
+                        case ConsoleKey.D5:
+                            pieceCoords[0] = 5;
+                            keyPressed = true;
+                            break;
+                        case ConsoleKey.D6:
+                            pieceCoords[0] = 6;
+                            keyPressed = true;
+                            break;
+                        case ConsoleKey.D7:
+                            pieceCoords[0] = 7;
+                            keyPressed = true;
+                            break;
+                    }
                 }
-            }
-            if (keyPressed)
-            {
-                // "Is it possible to add a piece of color 'color' in the 
-                // column 'column'?"
-                if (board.TryAddingPiece(pieceCoords[0], color))
+                if (keyPressed)
                 {
-                    // Add a piece of color 'color' in the column 'column', on 
-                    // the lowest free row
-                    pieceCoords[1] = board.AddPiece(pieceCoords[0], color);
+                    // "Is it possible to add a piece of color 'color' in the 
+                    // column 'column'?"
+                    if (board.TryAddingPiece(pieceCoords[0], color))
+                    {
+                        // Add a piece of color 'color' in the column 'column', on 
+                        // the lowest free row
+                        pieceCoords[1] = board.AddPiece(pieceCoords[0], color);
 
-                    if (color == Color.Red) playersPixels[new Vector2(pieceCoords[0], pieceCoords[1])] = RedPlayerPixel;
-                    else playersPixels[new Vector2(pieceCoords[0], pieceCoords[1])] = YellowPlayerPixel;
-                    ChangePlayer();
+                        if (color == Color.Red) playersPixels[new Vector2(pieceCoords[0], pieceCoords[1])] = redPlayerPixel;
+                        else playersPixels[new Vector2(pieceCoords[0], pieceCoords[1])] = yellowPlayerPixel;
+                        ChangePlayer();
+                    }
+
+                    // "Did the placed piece created any winning sequence(s)"
+                    // Then print 'victory message' according to the placed 
+                    // piece's color
+                    if (board.CheckWin(pieceCoords))
+                    {
+                        if (color == Color.Yellow)
+                            //Yellow player won
+                            gameStage = GameStage.Yellow;
+
+                        if (color == Color.Red)
+                            //Red player won
+                            gameStage = GameStage.Red;
+
+                        ParentScene.Terminate();
+                        Console.Clear();
+
+                        Console.WriteLine(board.AnnounceWinner(gameStage));
+                    }
                 }
+                keyPressed = false;
 
-                // "Did the placed piece created any winning sequence(s)"
-                // Then print 'victory message' according to the placed 
-                // piece's color
-                if (board.CheckWin(pieceCoords))
+                // "Is the board full?"
+                // Then announce that its a draw
+                if (board.CheckFull())
                 {
-                    if (color == Color.Yellow)
-                        //Yellow player won
-                        gameStage = GameStage.Yellow;
-
-                    if (color == Color.Red)
-                        //Red player won
-                        gameStage = GameStage.Red;
-
+                    gameStage = GameStage.Draw;
+                    ParentScene.Terminate();
+                    Console.Clear();
                     Console.WriteLine(board.AnnounceWinner(gameStage));
-
-                    // THE MATCH MUST BE ENDED HERE
+                    
                 }
-            }
-            keyPressed = false;
-
-            // "Is the board full?"
-            // Then announce that its a draw
-            if(board.CheckFull())
-            {
-                gameStage = GameStage.Draw;
-                Console.WriteLine(board.AnnounceWinner(gameStage));
             }
         }
 
