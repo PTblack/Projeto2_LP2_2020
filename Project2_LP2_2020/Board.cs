@@ -60,56 +60,5 @@ namespace Project2_LP2_2020
                 }
             }
         }
-
-        /// <summary>
-        /// Builds a string illustrating boardArray as a 2D matrix with 
-        /// coloured elements
-        /// </summary>
-        /// <returns>A string with the current boardArray</returns>
-        public override string ToString()
-        {
-            string boardString = "";
-           
-           // Starts printing the top-row, progressing until reaching the 
-           // end of the board (the bottom-row)
-            for (int ro = 0; ro < totRows; ro++)
-            {
-                Console.ForegroundColor = ConsoleColor.White;
-                boardString += "| ";
-                
-                // Prints every space with the specified row, progressing from 
-                // the left to the right of the board
-                for (int col = 0; col < totColumns; col++)
-                {
-                    // Checks the color of the space in the coordinates 
-                    // [col, ro], and adds to the string the appropriate simbol
-                    Color coordinateColor = boardArray[col, ro];
-                    switch (coordinateColor)
-                    {
-                        case Color.None:
-                            Console.ForegroundColor = ConsoleColor.Gray;
-                            boardString += ".";
-                            break;
-                        case Color.Red:
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            boardString += "R"; ;
-                            break;
-                        case Color.Yellow:
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            boardString += "Y";
-                            break;
-                    }
-                    Console.ForegroundColor = ConsoleColor.White;
-                    boardString += " | ";
-                }
-                // At the end of a row, begins a new line (for the next row)
-                boardString += "\n";
-            }
-
-            Console.ForegroundColor = ConsoleColor.White;
-            boardString += "_____________________________\n";
-
-            return boardString;
-        }
     }
 }

@@ -44,16 +44,44 @@ namespace Project2_LP2_2020
                 switch (readKey.Key)
                 {
                     case ConsoleKey.H:
-                        UI.Help();
+                        Console.WriteLine(UI.Help());
                         break;
                     case ConsoleKey.Q:
                         choosing = false;
                         break;
                     case ConsoleKey.Escape:
+                        Environment.Exit(0);
                         break;
                 }
             }      
         }
+        /// <summary>
+        /// Sends message announcing the end of the match, stating what end 
+        /// condition was met.
+        /// </summary>
+        /// <param name="gameStage">parameter that allows method to identify 
+        /// the end condition that made this method be called</param>
+        public static string AnnounceWinner(GameStage gameStage)
+        {
+            string announceState = "Match is Over";
+            switch (gameStage)
+            {
+                case GameStage.Draw:
+                    announceState = "\nIt's a DRAW!\n";
+                    break;
+
+                case GameStage.Yellow:
+                    announceState = "\nIt's a Victory for YELLOW!\n";
+                    break;
+
+                case GameStage.Red:
+                    announceState = "\nIt's a Victory for RED!\n";
+                    break;
+            }
+
+            return announceState;
+        }
+
 
         /// <summary>
         /// Tells the player to choose one column of the board to place a piece
@@ -61,23 +89,27 @@ namespace Project2_LP2_2020
         /// <param name="color">Color identifying the current player</param>
         public static void ColumnOptions(Color color, Scene scene, bool animation)
         {
-            if (!scene.paused)
-            {
-                if (color == Color.Red) ForegroundColor = ConsoleColor.Red;
-                else ForegroundColor = ConsoleColor.Yellow;
-                BackgroundColor = ConsoleColor.Black;
+            if (color == Color.Red) ForegroundColor = ConsoleColor.Red;
+            else ForegroundColor = ConsoleColor.Yellow;
+            BackgroundColor = ConsoleColor.Black;
 
-                Console.WriteLine("\n{0} player, it's your turn!    \n", color);
+            Console.WriteLine("\n{0} player, it's your turn!    \n", color);
 
-                Console.WriteLine("Choose the column for your piece.");
+            Console.WriteLine("Choose the column for your piece.");
 
-                Console.WriteLine(
-                    "\nInput the number, from 1 to 7, corresponding to the " +
-                    "respective column (going from left to right)");
+            Console.WriteLine(
+                "\nInput the number, from 1 to 7, corresponding to the " +
+                "respective column (going from left to right)");
 
-                if (animation) Console.WriteLine("\nWaiting. ");
-                else Console.WriteLine("\nWaiting..");
-            } 
+            if (animation) Console.WriteLine("\nWaiting. ");
+            else Console.WriteLine("\nWaiting..");
+        }
+
+        public static void Clear()
+        {
+            Console.WriteLine("\n                                                 \n" +
+            "                                                                  " +
+            "                                                                 ");
         }
 
         /// <summary>

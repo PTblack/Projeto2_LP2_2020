@@ -36,9 +36,6 @@ namespace Project2_LP2_2020
             bool canAdd = false;
             if (boardFiller.CanAdd(givenColumn)) 
                 canAdd = true;
-            else 
-                ExceptionManager.ExceptionControl(ErrorCodes.InvalidColumn);
-
             return canAdd;
         }
 
@@ -78,33 +75,6 @@ namespace Project2_LP2_2020
             isFull = boardSearcher.BoardFull();
 
             return isFull;
-        }
-
-        /// <summary>
-        /// Sends message announcing the end of the match, stating what end 
-        /// condition was met.
-        /// </summary>
-        /// <param name="gameStage">parameter that allows method to identify 
-        /// the end condition that made this method be called</param>
-        public string AnnounceWinner(GameStage gameStage)
-        {
-            string announceState = "Match is Over";
-            switch (gameStage)
-            {
-                case GameStage.Draw:
-                    announceState =  "\nIt's a DRAW!\n";
-                    break;
-
-                case GameStage.Yellow:
-                    announceState = "\nIt's a Victory for YELLOW!\n";
-                    break;
-
-                case GameStage.Red:
-                    announceState = "\nIt's a Victory for RED!\n";
-                    break;
-            }
-
-            return announceState;
         }
 
         /// <summary>
