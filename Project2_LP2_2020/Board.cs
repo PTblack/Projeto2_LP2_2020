@@ -5,30 +5,58 @@ using System.Text;
 
 namespace Project2_LP2_2020
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Board
     {
-        // X axis of the board
-        public readonly int totColumns;
-        
-        // Y axis of the board
-        public readonly int totRows;
-        
-        // Array bi-dimensional de chars
-        public Color [,] boardArray;
+        /// <summary>
+        /// Gets x axis of the board.
+        /// </summary>
+        public int TotColumns => totColumns;
 
+        /// <summary>
+        /// Gets Y axis of the board.
+        /// </summary>
+        public int TotRows => totRows;
+
+        /// <summary>
+        /// Gets array bi-dimensional de chars.
+        /// </summary>
+        public Color[,] BoardArray => boardArray;
+
+        /// <summary>
+        /// X axis of the board.
+        /// </summary>
+        private readonly int totColumns;
+
+        /// <summary>
+        /// Y axis of the board.
+        /// </summary>
+        private readonly int totRows;
+
+        /// <summary>
+        /// Array bi-dimensional de chars.
+        /// </summary>
+        private readonly Color[,] boardArray;
+
+        /// <summary>
+        /// 
+        /// </summary>
         public Board()
         {
             // Board dimensions. (totColumns = X, totRows = Y)
             totColumns = 7;
             totRows = 6;
+
             // Sets the dimensions of the bi-dimensional array 'boardArray' 
             // to the dimensions of the board
-            boardArray = new Color[totColumns, totRows];
+            boardArray = new Color[TotColumns, TotRows];
 
             CreateEmptyBoard();
         }
 
-        //______________________________________________________________________
+        // ______________________________________________________________________
         //
         //       1   2   3   4   5   6   7
         //    -----------------------------
@@ -44,19 +72,19 @@ namespace Project2_LP2_2020
         // The boardArray's [0, 0] position is equivalent to the game board's
         // top-left corner, with the [totColumns - 1, totRows - 1] position 
         // being the bottom-right corner.
-        //______________________________________________________________________
+        // ______________________________________________________________________
 
         /// <summary>
         /// Fills the board array with empty values. 
-        /// (Column by column, top-row to bottom-row)
+        /// (Column by column, top-row to bottom-row).
         /// </summary>
         private void CreateEmptyBoard()
         {
-            for (int col = 0; col < totColumns; col++)
+            for (int col = 0; col < TotColumns; col++)
             {
-                for (int row = 0; row < totRows; row++)
+                for (int row = 0; row < TotRows; row++)
                 {
-                    boardArray[col, row] = Color.None;
+                    BoardArray[col, row] = Color.None;
                 }
             }
         }

@@ -1,15 +1,18 @@
-using CoreGameEngine;
 using System;
 using System.Runtime.CompilerServices;
+using CoreGameEngine;
 using static System.Console;
 
 namespace Project2_LP2_2020
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class UI
     {
         /// <summary>
         /// 'Welcome' message with the general information 
-        /// (authors, references and game goal)
+        /// (authors, references and game goal).
         /// </summary>
         public static void Welcome()
         {
@@ -30,7 +33,7 @@ namespace Project2_LP2_2020
         }
 
         /// <summary>
-        /// Text showing the main game options
+        /// Text showing the main game options.
         /// </summary>
         public static void Options()
         {
@@ -55,12 +58,14 @@ namespace Project2_LP2_2020
                 }
             }      
         }
+
         /// <summary>
         /// Sends message announcing the end of the match, stating what end 
         /// condition was met.
         /// </summary>
         /// <param name="gameStage">parameter that allows method to identify 
-        /// the end condition that made this method be called</param>
+        /// the end condition that made this method be called.</param>
+        /// <returns>string.</returns>
         public static string AnnounceWinner(GameStage gameStage)
         {
             string announceState = "Match is Over";
@@ -82,15 +87,18 @@ namespace Project2_LP2_2020
             return announceState;
         }
 
-
         /// <summary>
-        /// Tells the player to choose one column of the board to place a piece
+        /// Tells the player to choose one column of the board to place a piece.
         /// </summary>
-        /// <param name="color">Color identifying the current player</param>
-        public static void ColumnOptions(Color color, Scene scene, bool animation)
+        /// <param name="color">Color identifying the current player.</param>
+        /// <param name="animation">Boolean used to cycle between waiting string.</param>
+        public static void ColumnOptions(Color color, bool animation)
         {
-            if (color == Color.Red) ForegroundColor = ConsoleColor.Red;
-            else ForegroundColor = ConsoleColor.Yellow;
+            if (color == Color.Red)
+                ForegroundColor = ConsoleColor.Red;
+            else
+                ForegroundColor = ConsoleColor.Yellow;
+
             BackgroundColor = ConsoleColor.Black;
 
             Console.WriteLine("\n{0} player, it's your turn!    \n", color);
@@ -101,10 +109,15 @@ namespace Project2_LP2_2020
                 "\nInput the number, from 1 to 7, corresponding to the " +
                 "respective column (going from left to right)");
 
-            if (animation) Console.WriteLine("\nWaiting. ");
-            else Console.WriteLine("\nWaiting..");
+            if (animation)
+                Console.WriteLine("\nWaiting. ");
+            else
+                Console.WriteLine("\nWaiting..");
         }
 
+        /// <summary>
+        /// Clears Exeptions text.
+        /// </summary>
         public static void Clear()
         {
             Console.WriteLine("\n                                                 \n" +
@@ -113,9 +126,10 @@ namespace Project2_LP2_2020
         }
 
         /// <summary>
-        /// 'Help' text with instructions on how to play and how the 
-        /// program works
+        /// 'Help' text with instructions on how to play and how the
+        /// program works.
         /// </summary>
+        /// <returns>string.</returns>
         public static string Help()
         {
             return "\n--CHOOSING A PLAY---\n" +
