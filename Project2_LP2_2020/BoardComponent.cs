@@ -5,7 +5,8 @@ using CoreGameEngine;
 namespace Project2_LP2_2020
 {
     /// <summary>
-    /// 
+    /// Where the functioning of the board is defined. Adding pieces, announcing
+    /// if a player as won, if its a draw and changing the current turn.
     /// </summary>
     public class BoardComponent : RenderableComponent
     {
@@ -21,13 +22,14 @@ namespace Project2_LP2_2020
         private Dictionary<Vector2, ConsolePixel> playersPixels;
 
         /// <summary>
-        /// Gets
+        /// Gets the pixels of all positions into the IEnumerable.
         /// </summary>
-        public override IEnumerable<KeyValuePair<Vector2, ConsolePixel>> 
+        public override IEnumerable<KeyValuePair<Vector2, ConsolePixel>>
             Pixels => playersPixels;
 
         /// <summary>
-        /// 
+        /// Initializes the ConsolePixel variables to show the color of the
+        /// respective player's pieces, or an empty space.
         /// </summary>
         public override void Start()
         {
@@ -41,12 +43,12 @@ namespace Project2_LP2_2020
             playersPixels = new Dictionary<Vector2, ConsolePixel>();
 
             ConsolePixel defaultPixel = new ConsolePixel(
-               '.', ConsoleColor.White, ConsoleColor.DarkGray);
+                '.', ConsoleColor.White, ConsoleColor.DarkGray);
 
             redPlayerPixel = new ConsolePixel(
-               'R', ConsoleColor.White, ConsoleColor.DarkRed);
+                'R', ConsoleColor.White, ConsoleColor.DarkRed);
             yellowPlayerPixel = new ConsolePixel(
-              'Y', ConsoleColor.White, ConsoleColor.DarkYellow);
+                'Y', ConsoleColor.White, ConsoleColor.DarkYellow);
 
             for (int x = 0; x < 7; x++)
             {
@@ -58,7 +60,9 @@ namespace Project2_LP2_2020
         }
 
         /// <summary>
-        /// 
+        /// Updates the game board according to the player's actions and
+        /// evaluates the current state of the game board to announce winners
+        /// or draws.
         /// </summary>
         public override void Update()
         {
@@ -120,7 +124,7 @@ namespace Project2_LP2_2020
 
                     if (color == Color.Red)
                         playersPixels[new Vector2(pieceCoords[0], pieceCoords[1])] = redPlayerPixel;
-                    else 
+                    else
                         playersPixels[new Vector2(pieceCoords[0], pieceCoords[1])] = yellowPlayerPixel;
 
                     // "Did the placed piece created any winning sequence(s)"

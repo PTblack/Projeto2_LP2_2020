@@ -6,7 +6,7 @@ using System.Text;
 namespace Project2_LP2_2020
 {
     /// <summary>
-    /// 
+    /// Contains the game-board's variables and creates the - empty - board.
     /// </summary>
     public class Board
     {
@@ -41,7 +41,8 @@ namespace Project2_LP2_2020
         private readonly Color[,] boardArray;
 
         /// <summary>
-        /// 
+        /// Class constructor, builds the board with the specified dimensions
+        /// and fills it with Color 'None'.
         /// </summary>
         public Board()
         {
