@@ -4,6 +4,10 @@ using CoreGameEngine;
 
 namespace Project2_LP2_2020
 {
+    /// <summary>
+    /// Class that controls the game, creates all game objects and starts
+    /// running the program.
+    /// </summary>
     internal class Program
     {// World dimensions
         private readonly int xdim = 9;
@@ -18,8 +22,7 @@ namespace Project2_LP2_2020
         /// <summary>
         /// Program starts here.
         /// </summary>
-        /// <param name="args"></param>
-        public static void Main(string[] args)
+        public static void Main()
         {
             // Create a new small game and run it
             Program connect4 = new Program();
