@@ -19,6 +19,5 @@ namespace CoreGameEngine
                     "requires a {nameof(ConsoleSprite)} component");
             }
         }
-
     }
 }

@@ -13,6 +13,5 @@ namespace CoreGameEngine
         public GameObject ParentGameObject { get; internal set; }
         // Reference to the parent scene
         public Scene ParentScene => ParentGameObject.ParentScene;
-
     }
 }

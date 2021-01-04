@@ -11,14 +11,19 @@ using System.Collections.Generic;
 
 namespace CoreGameEngine
 {
-    // This component is an key observer
+    /// <summary>
+    /// This component is an key observer.
+    /// </summary>
     public class KeyObserver : Component, IObserver<ConsoleKey>
     {
+        private readonly IEnumerable<ConsoleKey> keysToObserve;
+        private readonly Queue<ConsoleKey> observedKeys;
+        private readonly object queueLock;
 
-        private IEnumerable<ConsoleKey> keysToObserve;
-        private Queue<ConsoleKey> observedKeys;
-        private object queueLock;
-
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="keysToObserve"></param>
         public KeyObserver(IEnumerable<ConsoleKey> keysToObserve)
         {
             this.keysToObserve = keysToObserve;
@@ -26,13 +31,19 @@ namespace CoreGameEngine
             queueLock = new object();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void Start()
         {
             ParentScene.InputHandler.RegisterObserver(keysToObserve, this);
         }
 
-        // This method will be called by the subject when an observed key is
-        // pressed
+        /// <summary>
+        /// This method will be called by the subject when an observed key is
+        /// pressed. 
+        /// </summary>
+        /// <param name="notification"></param>
         public void Notify(ConsoleKey notification)
         {
             lock (queueLock)
@@ -41,7 +52,10 @@ namespace CoreGameEngine
             }
         }
 
-        // Return the currently observed keys
+        /// <summary>
+        /// Return the currently observed keys.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<ConsoleKey> GetCurrentKeys()
         {
             IEnumerable<ConsoleKey> currentKeys;
@@ -50,8 +64,8 @@ namespace CoreGameEngine
                 currentKeys = observedKeys.ToArray();
                 observedKeys.Clear();
             }
-            return currentKeys;
 
+            return currentKeys;
         }
     }
 }

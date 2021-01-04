@@ -10,22 +10,27 @@ using System.Threading;
 using System.Collections.Generic;
 
 namespace CoreGameEngine
-{
-    // This class handle keyboard input, other objects can register themselves
-    // as observers to listen to specific keys
+{  
+    /// <summary>
+    /// This class handle keyboard input, other objects can register themselves
+    /// as observers to listen to specific keys.
+    /// </summary>
     public class InputHandler : IObservable<ConsoleKey>
     {
         // Observers for specific keys
-        private Dictionary<ConsoleKey, ICollection<IObserver<ConsoleKey>>>
+        private readonly Dictionary<ConsoleKey, ICollection<IObserver<ConsoleKey>>>
             observers;
 
         // The input thread
-        private Thread inputThread;
+        private readonly Thread inputThread;
 
         // A list of keys which cause the input handler to terminate
-        private IEnumerable<ConsoleKey> quitKeys;
+        private readonly IEnumerable<ConsoleKey> quitKeys;
 
-        // Create a new input handler
+        /// <summary>
+        /// Create a new input handler.
+        /// </summary>
+        /// <param name="quitKeys"></param>
         public InputHandler(IEnumerable<ConsoleKey> quitKeys)
         {
             this.quitKeys = quitKeys;
@@ -34,7 +39,9 @@ namespace CoreGameEngine
             inputThread = new Thread(ReadInput);
         }
 
-        // Method which will run in a thread reading keys
+        /// <summary>
+        /// Method which will run in a thread reading keys.
+        /// </summary>
         private void ReadInput()
         {
             ConsoleKey key;
@@ -56,21 +63,28 @@ namespace CoreGameEngine
             } while (!quitKeys.Contains(key));
         }
 
-        // Start thread which will read the input
+        /// <summary>
+        /// Start thread which will read the input.
+        /// </summary>
         public void StartReadingInput()
         {
             inputThread.Start();
         }
 
-        // Wait for thread reading the input to terminate
+        /// <summary>
+        /// Wait for thread reading the input to terminate.
+        /// </summary>
         public void StopReadingInput()
         {
             inputThread.Join();
         }
 
-        // Below are methods for registering and removing observers for this
-        // subject
-
+        /// <summary>
+        /// Below are methods for registering and removing observers for this
+        /// subject.
+        /// </summary>
+        /// <param name="whatToObserve"></param>
+        /// <param name="observer"></param>
         public void RegisterObserver(
             IEnumerable<ConsoleKey> whatToObserve,
             IObserver<ConsoleKey> observer)
@@ -81,9 +95,16 @@ namespace CoreGameEngine
                 {
                     observers[key] = new List<IObserver<ConsoleKey>>();
                 }
+
                 observers[key].Add(observer);
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="whatToObserve"></param>
+        /// <param name="observer"></param>
         public void RemoveObserver(
             ConsoleKey whatToObserve, IObserver<ConsoleKey> observer)
         {
@@ -93,6 +114,10 @@ namespace CoreGameEngine
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="observer"></param>
         public void RemoveObserver(IObserver<ConsoleKey> observer)
         {
             foreach (ICollection<IObserver<ConsoleKey>> theseObservers

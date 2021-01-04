@@ -10,6 +10,5 @@ namespace CoreGameEngine
     public interface IObserver<T>
     {
         void Notify(T notification);
-
     }
 }

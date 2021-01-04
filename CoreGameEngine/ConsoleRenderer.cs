@@ -11,14 +11,17 @@ using System.Runtime.InteropServices;
 
 namespace CoreGameEngine
 {
-    // A renderer for the console
+    /// <summary>
+    /// A renderer for the console.
+    /// </summary>
     public class ConsoleRenderer
     {
         // Was the cursor visible before game rendering started?
         // For now we assume it was
         private bool cursorVisibleBefore = true;
 
-        private ConsolePixel[,] framePrev, frameNext;
+        private ConsolePixel[,] framePrev;
+        private ConsolePixel[,] frameNext;
 
         // This struct is used internally for managing renderable components
         private struct Renderable
@@ -43,7 +46,12 @@ namespace CoreGameEngine
         // Default background pixel
         private ConsolePixel bgPix;
 
-        // Constructor
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="xdim"></param>
+        /// <param name="ydim"></param>
+        /// <param name="bgPix"></param>
         public ConsoleRenderer(int xdim, int ydim, ConsolePixel bgPix)
         {
             this.xdim = xdim;
@@ -60,7 +68,9 @@ namespace CoreGameEngine
             }
         }
 
-        // Pre-rendering setup
+        /// <summary>
+        /// Pre-rendering setup.
+        /// </summary>
         public void Start()
         {
             // Clean console
@@ -127,6 +137,7 @@ namespace CoreGameEngine
                         bgColor = pix.BackgroundColor;
                         Console.BackgroundColor = bgColor;
                     }
+
                     if (!pix.ForegroundColor.Equals(fgColor))
                     {
                         fgColor = pix.ForegroundColor;
@@ -176,9 +187,11 @@ namespace CoreGameEngine
 
                     // Throw exception if any of these is out of bounds
                     if (x < 0 || x >= xdim || y < 0 || y >= ydim)
+                    {
                         throw new IndexOutOfRangeException(
                             $"Out of bounds pixel at ({x},{y}) in game object"
                             + $" '{rend.Name}'");
+                    }
 
                     // Put pixel in frame
                     frameNext[x, y] = pixel.Value;

@@ -20,8 +20,11 @@ namespace CoreGameEngine
         private readonly int xdim;
         private readonly int ydim;
 
-        // Input handler for this scene
-        public readonly InputHandler InputHandler;
+
+        /// <summary>
+        /// Gets Input handler for this scene.
+        /// </summary>
+        public InputHandler InputHandler { get; }
 
         // Collision handler for this scene
         private readonly CollisionHandler collisionHandler;
