@@ -11,61 +11,86 @@ using System.Globalization;
 
 namespace CoreGameEngine
 {
-    // This class represents a game scene
+    /// <summary>
+    /// This class represents a game scene.
+    /// </summary>
     public class Scene
     {
         // Scene dimensions
-        public readonly int xdim;
-        public readonly int ydim;
+        private readonly int xdim;
+        private readonly int ydim;
 
         // Input handler for this scene
-        public readonly InputHandler inputHandler;
+        public readonly InputHandler InputHandler;
 
         // Collision handler for this scene
-        public readonly CollisionHandler collisionHandler;
+        private readonly CollisionHandler collisionHandler;
 
         // Game objects in this scene
-        private Dictionary<string, GameObject> gameObjects;
+        private readonly Dictionary<string, GameObject> gameObjects;
+
+        // Renderer for this scene
+        private readonly ConsoleRenderer renderer;
 
         // Is the scene terminated?
         private bool terminate;
 
-        // Renderer for this scene
-        private ConsoleRenderer renderer;
-
-        // Create a new scene
-        public Scene(int xdim, int ydim, InputHandler inputHandler,
-            ConsoleRenderer renderer, CollisionHandler collisionHandler)
+        /// <summary>
+        /// Create a new scene.
+        /// </summary>
+        /// <param name="xdim"></param>
+        /// <param name="ydim"></param>
+        /// <param name="inputHandler"></param>
+        /// <param name="renderer"></param>
+        /// <param name="collisionHandler"></param>
+        public Scene(
+            int xdim,
+            int ydim,
+            InputHandler inputHandler,
+            ConsoleRenderer renderer,
+            CollisionHandler collisionHandler)
         {
             this.xdim = xdim;
             this.ydim = ydim;
-            this.inputHandler = inputHandler;
+            this.InputHandler = inputHandler;
             this.renderer = renderer;
             this.collisionHandler = collisionHandler;
             terminate = false;
             gameObjects = new Dictionary<string, GameObject>();
         }
 
-        // Add a game object to this scene
+        /// <summary>
+        /// Add a game object to this scene.
+        /// </summary>
+        /// <param name="gameObject"></param>
         public void AddGameObject(GameObject gameObject)
         {
             gameObject.ParentScene = this;
             gameObjects.Add(gameObject.Name, gameObject);
         }
 
-        // Find a game object by name in this scene
+        /// <summary>
+        /// Find a game object by name in this scene.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns>GameObject.</returns>
         public GameObject FindGameObjectByName(string name)
         {
             return gameObjects[name];
         }
 
-        // Terminate scene
+        /// <summary>
+        /// Terminate scene.
+        /// </summary>
         public void Terminate()
         {
             terminate = true;
         }
 
-        // Game loop
+        /// <summary>
+        /// Game loop
+        /// </summary>
+        /// <param name="msFramesPerSecond"></param>
         public void GameLoop(int msFramesPerSecond)
         {
             // Initialize all game objects
@@ -78,7 +103,7 @@ namespace CoreGameEngine
             renderer?.Start();
 
             // Start reading input
-            inputHandler.StartReadingInput();
+            InputHandler.StartReadingInput();
 
             // Perform the game loop until the scene is terminated
             while (!terminate)
@@ -102,9 +127,9 @@ namespace CoreGameEngine
                 renderer?.Render(gameObjects.Values);
 
                 // Time to wait until next frame
-                timeToWait = (int)(start / TimeSpan.TicksPerMillisecond
+                timeToWait = (int)((start / TimeSpan.TicksPerMillisecond)
                     + msFramesPerSecond
-                    - DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond);
+                    - (DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond));
 
                 // If this time is negative, we cheat by making it zero
                 // Note this should be handled with a more robust game loop
@@ -116,7 +141,7 @@ namespace CoreGameEngine
             }
 
             // Stop reading input
-            inputHandler.StopReadingInput();
+            InputHandler.StopReadingInput();
 
             // Teardown the game objects in this scene
             foreach (GameObject gameObject in gameObjects.Values)
@@ -127,6 +152,5 @@ namespace CoreGameEngine
             // Teardown renderer
             renderer?.Finish();
         }
-
     }
 }

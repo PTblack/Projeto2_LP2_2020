@@ -2,16 +2,23 @@ using System;
 
 namespace Project2_LP2_2020
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class BoardFiller 
     {
-        private Board board;
+        private readonly Board board;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="board"></param>
         public BoardFiller(Board board)
         {
             this.board = board;
         }
 
-        //______________________________________________________________________
+        // ______________________________________________________________________
         //
         //       1   2   3   4   5   6   7
         //    -----------------------------
@@ -27,54 +34,30 @@ namespace Project2_LP2_2020
         // The boardArray's [0, 0] position is equivalent to the game board's
         // top-left corner, with the [totColumns - 1, totRows - 1] position 
         // being the bottom-right corner.
-        //______________________________________________________________________
+        // ______________________________________________________________________
 
         /// <summary>
         /// Checks if the top row of the chosen column is free.
         /// </summary>
         /// <param name="givenColumn">Int identifying the column chosen by 
-        /// the player</param>
+        /// the player.</param>
         /// <returns>Bool stating if the top row of the chosen column 
-        /// is free</returns>
+        /// is free.</returns>
         public bool CanAdd(int givenColumn)
         {
             int boardColumn = givenColumn;
 
             // If the highest space in the chosen column is free, return 'true'
-            if (board.boardArray[boardColumn, 0] == Color.None) return true;
-            else return false;
+            return board.BoardArray[boardColumn, 0] == Color.None;
         }
 
         /// <summary>
-        /// Places piece in the lowest row of the chosen column and returns 
+        /// Places piece in the lowest row of the chosen column and returns
         /// the row of the placed piece.
         /// </summary>
-        /// <param name="givenColumn">The column chosen by the player</param>
-        /// <param name="color">The color of the piece/param>
-        /// <returns>Int with 'y' position of the placed piece in the 
-        /// boardArray</returns>
-        /*public int Add(int givenColumn, Color color)
-        {
-            int boardColumn = givenColumn -1;
-
-            // Loop starts at the top where the only garanteed free space is
-            int currentRow = 0;
-
-            // Starting from the top of the board, descend through the rows 
-            // of the column until an occupied space is found
-            while (currentRow < board.totRows &&
-                board.boardArray[boardColumn, currentRow + 1] == Color.None)
-            {
-
-                currentRow++;
-            }
-
-            // Fill the lowest free space found in the column
-            board.boardArray[boardColumn, currentRow] = color;
-
-            return currentRow;
-        }*/
-        
+        /// <param name="givenColumn"></param>
+        /// <param name="color"></param>
+        /// <returns>int.</returns>
         public int Add(int givenColumn, Color color)
         {
             int boardColumn = givenColumn;
@@ -84,14 +67,14 @@ namespace Project2_LP2_2020
 
             // Starting from the top of the board, descend through the rows 
             // of the column until an occupied space is found
-            while (currentRow <= board.totRows - 2 && 
-                board.boardArray[boardColumn, currentRow + 1] == Color.None)
-            {        
+            while (currentRow <= board.TotRows - 2 && 
+                board.BoardArray[boardColumn, currentRow + 1] == Color.None)
+            {
                 currentRow++;
             }
 
             // Fill the lowest free space found in the column
-            board.boardArray[boardColumn, currentRow] = color;
+            board.BoardArray[boardColumn, currentRow] = color;
 
             return currentRow;
         }

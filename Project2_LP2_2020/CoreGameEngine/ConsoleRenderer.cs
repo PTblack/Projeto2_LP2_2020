@@ -37,7 +37,8 @@ namespace CoreGameEngine
         }
 
         // Scene dimensions
-        private int xdim, ydim;
+        private readonly int ydim;
+        private readonly int xdim;
 
         // Default background pixel
         private ConsolePixel bgPix;
@@ -116,18 +117,19 @@ namespace CoreGameEngine
 
                     // If current pixel is the same as previous pixel, don't
                     // draw it
-                    if (pix.Equals(prevPix)) continue;
+                    if (pix.Equals(prevPix)) 
+                        continue;
 
                     // Do we have to change the background and foreground
                     // colors for this pixel?
-                    if (!pix.backgroundColor.Equals(bgColor))
+                    if (!pix.BackgroundColor.Equals(bgColor))
                     {
-                        bgColor = pix.backgroundColor;
+                        bgColor = pix.BackgroundColor;
                         Console.BackgroundColor = bgColor;
                     }
-                    if (!pix.foregroundColor.Equals(fgColor))
+                    if (!pix.ForegroundColor.Equals(fgColor))
                     {
-                        fgColor = pix.foregroundColor;
+                        fgColor = pix.ForegroundColor;
                         Console.ForegroundColor = fgColor;
                     }
 
@@ -135,7 +137,7 @@ namespace CoreGameEngine
                     Console.SetCursorPosition(x, y);
 
                     // Render pixel
-                    Console.Write(pix.shape);
+                    Console.Write(pix.Shape);
                 }
 
                 // New line

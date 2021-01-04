@@ -28,7 +28,7 @@ namespace CoreGameEngine
 
         public override void Start()
         {
-            ParentScene.inputHandler.RegisterObserver(keysToObserve, this);
+            ParentScene.InputHandler.RegisterObserver(keysToObserve, this);
         }
 
         // This method will be called by the subject when an observed key is

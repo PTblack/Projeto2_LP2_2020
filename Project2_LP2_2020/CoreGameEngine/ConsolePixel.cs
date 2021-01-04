@@ -9,51 +9,73 @@ using System;
 
 namespace CoreGameEngine
 {
-    // Represents a console pixel with shape (char), foreground and background
-    // colors
+
+    /// <summary>
+    /// Represents a console pixel with Shape (char), foreground and background
+    /// colors
+    /// </summary>
     public struct ConsolePixel
     {
-        public readonly char shape;
-        public readonly ConsoleColor foregroundColor;
-        public readonly ConsoleColor backgroundColor;
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly char Shape;
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly ConsoleColor ForegroundColor;
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly ConsoleColor BackgroundColor;
 
-        // Is this pixel renderable?
+
+        /// <summary>
+        /// Gets a value indicating whether this is pixel renderable.
+        /// </summary>
         public bool IsRenderable
         {
             get
             {
                 // The pixel is renderable if any of its fields is not the
                 // default to the specific type
-                return !shape.Equals(default(char))
-                    && !foregroundColor.Equals(default(ConsoleColor))
-                    && !backgroundColor.Equals(default(ConsoleColor));
+                return !Shape.Equals(default(char))
+                    && !ForegroundColor.Equals(default(ConsoleColor))
+                    && !BackgroundColor.Equals(default(ConsoleColor));
             }
         }
 
-        // Below there are several constructors for building a console pixel
 
-        public ConsolePixel(char shape,
-            ConsoleColor foregroundColor, ConsoleColor backgroundColor)
+        /// <summary>
+        /// Below there are several constructors for building a console pixel
+        /// </summary>
+        /// <param name="Shape"></param>
+        /// <param name="ForegroundColor"></param>
+        /// <param name="BackgroundColor"></param>
+        public ConsolePixel(char Shape,
+            ConsoleColor ForegroundColor, ConsoleColor BackgroundColor)
         {
-            this.shape = shape;
-            this.foregroundColor = foregroundColor;
-            this.backgroundColor = backgroundColor;
+            this.Shape = Shape;
+            this.ForegroundColor = ForegroundColor;
+            this.BackgroundColor = BackgroundColor;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Shape"></param>
+        /// <param name="ForegroundColor"></param>
+        public ConsolePixel(char Shape, ConsoleColor ForegroundColor)
+        {
+            this.Shape = Shape;
+            this.ForegroundColor = ForegroundColor;
+            BackgroundColor = Console.BackgroundColor;
         }
 
-        public ConsolePixel(char shape, ConsoleColor foregroundColor)
+        public ConsolePixel(char Shape)
         {
-            this.shape = shape;
-            this.foregroundColor = foregroundColor;
-            backgroundColor = Console.BackgroundColor;
+            this.Shape = Shape;
+            ForegroundColor = Console.ForegroundColor;
+            BackgroundColor = Console.BackgroundColor;
         }
-
-        public ConsolePixel(char shape)
-        {
-            this.shape = shape;
-            foregroundColor = Console.ForegroundColor;
-            backgroundColor = Console.BackgroundColor;
-        }
-
     }
-
 }
